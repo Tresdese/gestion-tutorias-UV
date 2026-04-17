@@ -22,6 +22,8 @@ public class TutoradoDAO {
     private static final String SQL_SELECT_BY_MATRICULA = "SELECT * FROM tutorado WHERE matricula = ?";
     private static final String SQL_SELECT_ALL = "SELECT * FROM tutorado";
     private static final String SQL_SELECT_ALL_POR_ASIGNAR = "SELECT * FROM tutorado WHERE idTutor IS NULL AND esActivo = 1";
+    private static final String SQL_SELECT_POR_TUTOR = "SELECT * FROM tutorado WHERE idTutor = ?";
+    private static final String SQL_BAJA = "UPDATE tutorado SET esActivo = 0 WHERE matricula = ?";
 
     public boolean insertarTutorado(Tutorado tutorado) throws SQLException {
         boolean resultado = false;
@@ -36,7 +38,11 @@ public class TutoradoDAO {
                 statement.setInt(6, tutorado.getIdCarrera());
                 statement.setInt(7, tutorado.getSemestre());
                 statement.setBoolean(8, tutorado.isActivo());
-                statement.setInt(9, tutorado.getIdTutor());
+                if (tutorado.getIdTutor() == 0) {
+                    statement.setNull(9, java.sql.Types.INTEGER);
+                } else {
+                    statement.setInt(9, tutorado.getIdTutor());
+                }
                 resultado = statement.executeUpdate() > 0;
             }
         }
@@ -106,6 +112,18 @@ public class TutoradoDAO {
         return tutorados;
     }
 
+    public boolean darBajaTutorado(String matricula) throws SQLException {
+        boolean resultado = false;
+        try (Connection connection = ConexionBaseDatos.abrirConexionBD()) {
+            if (connection != null) {
+                var statement = connection.prepareStatement(SQL_BAJA);
+                statement.setString(1, matricula);
+                resultado = statement.executeUpdate() > 0;
+            }
+        }
+        return resultado;
+    }
+
     public boolean asignarTutor(int idTutorado, int idTutor) throws SQLException {
         boolean resultado = false;
 
@@ -133,6 +151,21 @@ public class TutoradoDAO {
         tutorado.setActivo(resultSet.getBoolean("esActivo"));
         tutorado.setIdTutor(resultSet.getInt("idTutor"));
         return tutorado;
+    }
+
+    public List<Tutorado> obtenerTutoradosPorTutor(int idTutor) throws SQLException {
+        List<Tutorado> tutorados = new ArrayList<>();
+        try (Connection connection = ConexionBaseDatos.abrirConexionBD()) {
+            if (connection != null) {
+                var statement = connection.prepareStatement(SQL_SELECT_POR_TUTOR);
+                statement.setInt(1, idTutor);
+                ResultSet resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    tutorados.add(mapResultSetToTutorado(resultSet));
+                }
+            }
+        }
+        return tutorados;
     }
 
     public List<Tutorado> getAllTutorados() throws SQLException {

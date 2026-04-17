@@ -129,6 +129,11 @@ public class FXMLRegistrarTutoradoController implements Initializable {
                         "No se pudo registrar al tutorado",
                         Alert.AlertType.ERROR);
             }
+        } catch (java.sql.SQLIntegrityConstraintViolationException ex) {
+            LOGGER.warn("Intento de registrar matrícula duplicada", ex);
+            Utilidades.mostrarAlertaSimple("Matrícula duplicada",
+                    "Ya existe un tutorado registrado con esa matrícula.",
+                    Alert.AlertType.WARNING);
         } catch (SQLException ex) {
             manejarError("Error al registrar tutorado en la base de datos", ex, "Error de base de datos",
                     "No se pudo registrar al tutorado. Intenta nuevamente.");
