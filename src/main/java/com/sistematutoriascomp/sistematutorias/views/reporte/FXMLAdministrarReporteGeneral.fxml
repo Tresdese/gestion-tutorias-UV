@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: linear-gradient(to bottom right, #F2F2F2, #E6E6E6);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistematutoriascomp.sistematutorias.controller.reporte.FXMLAdministrarReporteGeneralController">
+
+    <children>
+        <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+            <!-- HEADER -->
+            <top>
+                <HBox alignment="CENTER_LEFT" prefHeight="70.0" spacing="12.0" style="-fx-background-color: #18529d; -fx-padding: 0 20 0 20;">
+                    <children>
+                        <Label style="-fx-font-size: 22px; -fx-font-weight: bold;" text="Sistema de Tutorías" textFill="WHITE" />
+
+                        <Region HBox.hgrow="ALWAYS" />
+
+                        <Button fx:id="btnVolver" onAction="#clicVolver" style="-fx-background-color: rgba(255,255,255,0.15);                                        -fx-text-fill: white;                                        -fx-background-radius: 8;                                        -fx-padding: 8 16;                                        -fx-cursor: hand;                                        -fx-font-size: 13;" text="Volver" />
+                    </children>
+                </HBox>
+            </top>
+
+            <!-- CONTENIDO CENTRAL -->
+            <center>
+                <VBox alignment="TOP_LEFT" spacing="20.0" style="-fx-padding: 24;">
+                    <children>
+
+                        <!-- Tarjeta blanca -->
+                        <VBox spacing="14.0" style="-fx-background-color: white;                                      -fx-background-radius: 12;                                      -fx-padding: 18;">
+                            <children>
+
+                                <!-- Título -->
+                                <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Reportes generales" textFill="#18529d" />
+
+                                <Label style="-fx-font-size: 13px;" text="Visualice y gestione los reportes generales registrados en el sistema." textFill="#666666" />
+
+                                <!-- Barra superior: búsqueda y acciones -->
+                                <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-padding: 4 0 8 0;">
+                                    <children>
+                                        <TextField fx:id="txtBuscar" prefWidth="220.0" promptText="Buscar por periodo, estado, etc." style="-fx-font-size: 13px;" />
+
+                                        <Button fx:id="btnRegistrar" onAction="#clicRegistrar" style="-fx-font-size: 13px;" text="Registrar" />
+
+                                        <Button fx:id="btnVerReporte" onAction="#clicVerReporte" style="-fx-font-size: 13px;" text="Ver reporte" />
+
+                                        <Region HBox.hgrow="ALWAYS" />
+                                    </children>
+                                </HBox>
+
+                                <!-- Tabla de reportes generales -->
+                                <TableView fx:id="tblReportesGenerales" prefHeight="400.0">
+                                    <columns>
+                                        <TableColumn fx:id="colPeriodo" prefWidth="260.0" text="Periodo" />
+                                        <TableColumn fx:id="colFechaGeneracion" prefWidth="220.0" text="Fecha de generación" />
+                                        <TableColumn fx:id="colEstado" prefWidth="220.0" text="Estado" />
+                                        <TableColumn fx:id="colIdReporteGeneral" prefWidth="150.0" text="ID reporte" />
+                                    </columns>
+                                    <placeholder>
+                                        <Label style="-fx-text-fill: #888888; -fx-font-size: 13px;" text="Tabla sin contenido" />
+                                    </placeholder>
+                                </TableView>
+
+                            </children>
+                        </VBox>
+
+                    </children>
+                </VBox>
+            </center>
+        </BorderPane>
+    </children>
+</AnchorPane>

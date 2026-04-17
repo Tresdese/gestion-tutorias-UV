@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: linear-gradient(to bottom right, #F2F2F2, #E6E6E6);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistematutoriascomp.sistematutorias.controller.FXMLMenuGestionarUsuariosController">
+    <children>
+        <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <top>
+                <HBox alignment="CENTER_LEFT" prefHeight="80.0" spacing="12.0" style="-fx-background-color: #18529d; -fx-padding: 0 20 0 20;">
+                    <children>
+                        <Label text="Sistema de Tutorías" textFill="WHITE">
+                            <font>
+                                <Font name="Segoe UI Bold" size="22.0" />
+                            </font>
+                        </Label>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" onAction="#clicCerrarSesion" style="-fx-background-color: rgba(255,255,255,0.15); -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 8 16; -fx-cursor: hand; -fx-font-size: 18;" text="Cerrar sesión">
+                            <font>
+                                <Font name="Segoe UI Semibold" size="14.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </HBox>
+            </top>
+            <center>
+                <VBox alignment="TOP_CENTER" spacing="20.0" style="-fx-padding: 30;">
+                    <children>
+                        <VBox alignment="TOP_CENTER" maxWidth="850.0" spacing="25.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 30;">
+                            <effect>
+                                <DropShadow offsetY="2.0" radius="14.0">
+                                    <color>
+                                        <Color opacity="0.18" />
+                                    </color>
+                                </DropShadow>
+                            </effect>
+                            <children>
+                                <Label text="Gestión de Usuarios del Sistema" textFill="#8e24aa">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="24.0" />
+                                    </font>
+                                </Label>
+                                <Label text="Seleccione la operación que desea realizar:" textFill="#666666">
+                                    <font>
+                                        <Font name="Segoe UI" size="16.0" />
+                                    </font>
+                                </Label>
+                                <FlowPane alignment="CENTER" hgap="25.0" prefWrapLength="600.0" vgap="25.0">
+                                    <children>
+                                        <Button fx:id="btnRegistrarUsuario" mnemonicParsing="false" onAction="#clicRegistrarUsuario" prefHeight="70.0" prefWidth="300.0" style="-fx-background-color: #8E24AA; -fx-text-fill: white; -fx-background-radius: 10; -fx-cursor: hand; -fx-font-size: 18;" text="Registrar Usuario">
+                                            <font><Font name="Segoe UI Semibold" size="16.0" /></font>
+                                        </Button>
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets top="15.0" />
+                                    </VBox.margin>
+                                </FlowPane>
+                            </children>
+                        </VBox>
+                        <Button mnemonicParsing="false" onAction="#clicVolverMenuPrincipal" style="-fx-background-color: transparent; -fx-text-fill: #666666; -fx-cursor: hand;" text="⬅ Volver al Menú Principal">
+                            <font>
+                                <Font name="Segoe UI" size="16.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </VBox>
+            </center>
+        </BorderPane>
+    </children>
+</AnchorPane>
