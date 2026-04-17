@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: linear-gradient(to bottom right, #F2F2F2, #E6E6E6);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistematutoriascomp.sistematutorias.controller.tutoria.FXMLRegistrarAsistenciaTutoradoController">
+
+    <children>
+        <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+            <!-- HEADER -->
+            <top>
+                <HBox alignment="CENTER_LEFT" prefHeight="80.0" spacing="12.0" style="-fx-background-color: #18529d; -fx-padding: 0 20 0 20;">
+                    <children>
+                        <Button onAction="#clicVolver" style="-fx-background-color: rgba(255,255,255,0.15);                                        -fx-text-fill: white;                                        -fx-background-radius: 8;                                        -fx-padding: 6 16;                                        -fx-cursor: hand;" text="Cancelar">
+                            <font>
+                                <Font name="Segoe UI Semibold" size="14.0" />
+                            </font>
+                        </Button>
+
+                        <Region HBox.hgrow="ALWAYS" />
+
+                        <Label text="Registrar asistencia de tutoría" textFill="WHITE">
+                            <font>
+                                <Font name="Segoe UI Bold" size="22.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+            </top>
+
+            <!-- CONTENIDO -->
+            <center>
+                <VBox alignment="TOP_CENTER" spacing="18.0" style="-fx-padding: 24;">
+                    <children>
+
+                        <!-- Texto de guía -->
+                        <Label maxWidth="700.0" text="Marque la asistencia de sus tutorados" textFill="#666666" wrapText="true">
+                            <font>
+                                <Font name="Segoe UI" size="15.0" />
+                            </font>
+                        </Label>
+
+                        <!-- Tarjeta principal -->
+                        <VBox maxWidth="820.0" spacing="16.0" style="-fx-background-color: white;                                      -fx-background-radius: 14;                                      -fx-padding: 20;">
+                            <effect>
+                                <DropShadow offsetY="2.0" radius="16.0">
+                                    <color>
+                                        <Color blue="0.0" green="0.0" opacity="0.18" red="0.0" />
+                                    </color>
+                                </DropShadow>
+                            </effect>
+                            <children>
+
+                                <!-- Selector de sesión -->
+                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                    <children>
+                                        <Label text="Sesión de tutoría:">
+                                            <font>
+                                                <Font name="Segoe UI Semibold" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <!-- Por simplicidad, lo dejamos sin tipo genérico -->
+                                        <ComboBox fx:id="cbSesiones" prefWidth="320.0" promptText="Seleccione una sesión" />
+                                    </children>
+                                </HBox>
+
+                                <Label fx:id="lbErrorSesion" managed="false" textFill="RED" visible="false">
+                                    <font>
+                                        <Font name="Segoe UI" size="11.0" />
+                                    </font>
+                                </Label>
+
+                                <!-- Tabla de asistencia -->
+                                <TableView fx:id="tvAsistencia" prefHeight="300.0" tableMenuButtonVisible="false">
+                                    <columns>
+
+                                        <TableColumn fx:id="colMatricula" prefWidth="158.0" text="Matrícula" />
+
+                                        <TableColumn fx:id="colNombre" prefWidth="208.0" text="Nombre" />
+
+                                        <TableColumn fx:id="colSemestre" prefWidth="127.0" text="Semestre" />
+
+                                        <TableColumn fx:id="colAsistio" prefWidth="133.0" text="Asistió" />
+
+                                        <TableColumn fx:id="colAcciones" prefWidth="153.0" text="Problematicas" />
+
+                                    </columns>
+                                </TableView>
+
+                                <Label fx:id="lbMensajeInfo" managed="false" textFill="#777777" visible="false">
+                                    <font>
+                                        <Font name="Segoe UI" size="11.0" />
+                                    </font>
+                                </Label>
+
+                                <!-- Botones inferiores -->
+                                <HBox alignment="CENTER_RIGHT" spacing="12.0" style="-fx-padding: 10 0 0 0;">
+                                    <children>
+
+                                        <Button fx:id="btnSubirEvidencia" disable="true" onAction="#clicSubirEvidencia" style="-fx-background-color: #6a1b9a;                                                        -fx-text-fill: white;                                                        -fx-background-radius: 8;                                                        -fx-padding: 6 14;                                                        -fx-cursor: hand;" text="Subir evidencia">
+                                            <font>
+                                                <Font name="Segoe UI Semibold" size="13.0" />
+                                            </font>
+                                        </Button>
+
+                                        <Button fx:id="btnRegistrar" onAction="#clicRegistrar" style="-fx-background-color: #18529d;                                                        -fx-text-fill: white;                                                        -fx-background-radius: 8;                                                        -fx-padding: 6 18;                                                        -fx-cursor: hand;" text="Registrar asistencia">
+                                            <font>
+                                                <Font name="Segoe UI Semibold" size="14.0" />
+                                            </font>
+                                        </Button>
+
+                                    </children>
+                                </HBox>
+
+                            </children>
+                        </VBox>
+
+                    </children>
+                </VBox>
+            </center>
+
+        </BorderPane>
+    </children>
+</AnchorPane>

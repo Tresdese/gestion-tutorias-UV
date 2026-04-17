@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="320.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistematutoriascomp.sistematutorias.controller.reporte.FXMLResponderReporteGeneralController">
+    <children>
+        <VBox spacing="12.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0" AnchorPane.bottomAnchor="16.0">
+            <padding>
+                <Insets bottom="8" left="8" right="8" top="8" />
+            </padding>
+            <children>
+                <Label text="Responder reporte general" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+                <Label text="Agrega las observaciones o comentarios para este reporte general." style="-fx-text-fill: #555;" />
+                <TextArea fx:id="txtaRespuesta" promptText="Escribe tu respuesta" prefHeight="180.0" wrapText="true" />
+                <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                    <children>
+                        <Button text="Cancelar" onAction="#clicCancelar" />
+                        <Button text="Guardar" defaultButton="true" onAction="#clicGuardar" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

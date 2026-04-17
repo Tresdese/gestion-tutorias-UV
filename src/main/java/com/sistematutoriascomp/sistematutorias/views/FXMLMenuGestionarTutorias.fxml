@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: linear-gradient(to bottom right, #F2F2F2, #E6E6E6);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistematutoriascomp.sistematutorias.controller.FXMLMenuGestionarTutoriasController">
+    <children>
+        <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <top>
+                <HBox alignment="CENTER_LEFT" prefHeight="80.0" spacing="12.0" style="-fx-background-color: #18529d; -fx-padding: 0 20 0 20;">
+                    <children>
+                        <Label text="Sistema de Tutorías" textFill="WHITE">
+                            <font>
+                                <Font name="Segoe UI Bold" size="22.0" />
+                            </font>
+                        </Label>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" onAction="#clicCerrarSesion" style="-fx-background-color: rgba(255,255,255,0.15); -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 8 16; -fx-cursor: hand; -fx-font-size: 18;" text="Cerrar sesión">
+                            <font>
+                                <Font name="Segoe UI Semibold" size="14.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </HBox>
+            </top>
+            <center>
+                <VBox alignment="TOP_CENTER" spacing="20.0" style="-fx-padding: 30;">
+                    <children>
+                        <VBox alignment="TOP_CENTER" maxWidth="850.0" spacing="25.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 30;">
+                            <effect>
+                                <DropShadow offsetY="2.0" radius="14.0">
+                                    <color>
+                                        <Color opacity="0.18" />
+                                    </color>
+                                </DropShadow>
+                            </effect>
+                            <children>
+                                <Label text="Gestión de Tutorías" textFill="#18529d">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="24.0" />
+                                    </font>
+                                </Label>
+                                <Label text="Seleccione la operación que desea realizar:" textFill="#666666">
+                                    <font>
+                                        <Font name="Segoe UI" size="16.0" />
+                                    </font>
+                                </Label>
+                                <GridPane alignment="CENTER" hgap="20.0" vgap="20.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <Button fx:id="btnRegistrarFecha" mnemonicParsing="false" onAction="#clicRegistrarFecha" prefHeight="70.0" prefWidth="240.0" style="-fx-background-color: #18529d; -fx-text-fill: white; -fx-background-radius: 10; -fx-cursor: hand; -fx-font-size: 18;" text="Registrar Fecha" GridPane.rowIndex="1">
+                                            <font><Font name="Segoe UI Semibold" size="16.0" /></font>
+                                        </Button>
+                                        <Button fx:id="btnAsignarTutorado" mnemonicParsing="false" onAction="#clicAsignarTutorado" prefHeight="70.0" prefWidth="240.0" style="-fx-background-color: #18529d; -fx-text-fill: white; -fx-background-radius: 10; -fx-cursor: hand; -fx-font-size: 18;" text="Asignar Tutorado" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                            <font><Font name="Segoe UI Semibold" size="16.0" /></font>
+                                        </Button>
+                                        <Button fx:id="btnRegistrarTutorado" mnemonicParsing="false" onAction="#clicRegistrarTutorado" prefHeight="70.0" prefWidth="240.0" style="-fx-background-color: #18529d; -fx-text-fill: white; -fx-background-radius: 10; -fx-cursor: hand; -fx-font-size: 18;" text="Registrar Tutorado" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                            <font><Font name="Segoe UI Semibold" size="16.0" /></font>
+                                        </Button>
+                                        <Button fx:id="btnRegistrarHorario" mnemonicParsing="false" onAction="#clicRegistrarHorario" prefHeight="70.0" prefWidth="240.0" style="-fx-background-color: #FC8B12; -fx-text-fill: white; -fx-background-radius: 10; -fx-cursor: hand; -fx-font-size: 18;" text="Registrar Horario">
+                                            <font><Font name="Segoe UI Semibold" size="16.0" /></font>
+                                        </Button>
+                                        <Button fx:id="btnRegistrarAsistencia" mnemonicParsing="false" onAction="#clicRegistrarAsistencia" prefHeight="70.0" prefWidth="240.0" style="-fx-background-color: #FC8B12; -fx-text-fill: white; -fx-background-radius: 10; -fx-cursor: hand; -fx-font-size: 18;" text="Registrar Asistencia" GridPane.columnIndex="1">
+                                            <font><Font name="Segoe UI Semibold" size="16.0" /></font>
+                                        </Button>
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets top="10.0" />
+                                    </VBox.margin>
+                                </GridPane>
+                            </children>
+                        </VBox>
+                        <Button mnemonicParsing="false" onAction="#clicVolverMenuPrincipal" style="-fx-background-color: transparent; -fx-text-fill: #666666; -fx-cursor: hand;" text="⬅ Volver al Menú Principal">
+                            <font>
+                                <Font name="Segoe UI" size="16.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </VBox>
+            </center>
+        </BorderPane>
+    </children>
+</AnchorPane>

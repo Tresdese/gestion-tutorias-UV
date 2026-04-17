@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistematutoriascomp.sistematutorias.controller.FXMLInicioSesionController">
+    <children>
+        <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <left>
+                <StackPane prefWidth="300.0" style="-fx-background-color: linear-gradient(to bottom, #f7fbff, #ffffff);">
+                    <children>
+                        <VBox alignment="CENTER" spacing="16.0" style="-fx-padding: 30;">
+                            <children>
+                                <ImageView fitHeight="260.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@/images/logouv.png" />
+                                    </image>
+                                    <effect>
+                                        <DropShadow color="#00000033" offsetY="3.0" radius="14.0" />
+                                    </effect>
+                                </ImageView>
+                                <Label text="Sistema de Tutorías" textFill="#18529d">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="24.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </VBox>
+                    </children>
+                </StackPane>
+            </left>
+            <center>
+                <StackPane prefHeight="600.0" prefWidth="606.0" style="-fx-padding: 30;">
+                    <children>
+                        <VBox maxWidth="477.0" prefHeight="540.0" prefWidth="477.0" spacing="16.0" style="-fx-background-color: white; -fx-background-radius: 14; -fx-padding: 28;">
+                            <effect>
+                                <DropShadow offsetY="3.0" radius="16.0">
+                                    <color>
+                                        <Color blue="0.0" green="0.0" opacity="0.20" red="0.0" />
+                                    </color>
+                                </DropShadow>
+                            </effect>
+                            <children>
+                                <Label text="Bienvenido(a)" textFill="#18529d">
+                                    <font>
+                                        <Font name="Segoe UI Semibold" size="24.0" />
+                                    </font>
+                                </Label>
+                                <Label text="Ingrese su número de personal y contraseña para continuar" textAlignment="CENTER" textFill="#666666" wrapText="true">
+                                    <font>
+                                        <Font name="Segoe UI" size="16.0" />
+                                    </font>
+                                </Label>
+                                <Label text="Número de personal">
+                                    <font>
+                                        <Font name="Segoe UI Semibold" size="18.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="txtUsuario" prefHeight="38.0" promptText="Ejemplo: 12345" style="-fx-background-color: #f8f9fa; -fx-background-radius: 8; -fx-border-color: #dddddd; -fx-border-radius: 8; -fx-border-width: 1.4; -fx-padding: 0 12 0 12;">
+                                    <font>
+                                        <Font name="Segoe UI" size="18.0" />
+                                    </font>
+                                </TextField>
+                                <Label fx:id="lbErrorUsuario" managed="false" textFill="RED" visible="false">
+                                    <font>
+                                        <Font name="Segoe UI" size="14.0" />
+                                    </font>
+                                </Label>
+                                <Label text="Contraseña">
+                                    <font>
+                                        <Font name="Segoe UI Semibold" size="18.0" />
+                                    </font>
+                                </Label>
+                                <PasswordField fx:id="pwdContrasenia" prefHeight="38.0" promptText="Ingrese su contraseña" style="-fx-background-color: #f8f9fa; -fx-background-radius: 8; -fx-border-color: #dddddd; -fx-border-radius: 8; -fx-border-width: 1.4; -fx-padding: 0 12 0 12;">
+                                    <font>
+                                        <Font name="Segoe UI" size="18.0" />
+                                    </font>
+                                </PasswordField>
+                                <Label fx:id="lbErrorContrasenia" managed="false" textFill="RED" visible="false">
+                                    <font>
+                                        <Font name="Segoe UI" size="14.0" />
+                                    </font>
+                                </Label>
+                                <Button defaultButton="true" maxWidth="Infinity" onAction="#clicIniciarSesion" style="-fx-background-color: #18529d; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 10 16; -fx-cursor: hand;" text="Iniciar sesión">
+                                    <font>
+                                        <Font name="Segoe UI Semibold" size="18.0" />
+                                    </font>
+                                </Button>
+                                <Label text="¿Problemas para ingresar? Contacte al administrador" textAlignment="CENTER" textFill="#888888" wrapText="true">
+                                    <font>
+                                        <Font name="Segoe UI" size="14.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </VBox>
+                    </children>
+                </StackPane>
+            </center>
+        </BorderPane>
+    </children>
+</AnchorPane>

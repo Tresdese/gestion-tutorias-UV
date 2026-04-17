@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: linear-gradient(to bottom right, #F2F2F2, #E6E6E6);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistematutoriascomp.sistematutorias.controller.tutoria.FXMLRegistrarFechaTutoriaController">
+   <children>
+      <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <HBox alignment="CENTER_LEFT" prefHeight="80.0" spacing="12.0" style="-fx-background-color: #18529d; -fx-padding: 0 20 0 20;">
+               <children>
+                  <Label text="Sistema de Tutorías" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Button mnemonicParsing="false" onAction="#clicCerrarSesion" style="-fx-background-color: rgba(255,255,255,0.15); -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 8 16; -fx-cursor: hand; -fx-font-size: 18;" text="Cerrar sesión">
+                     <font>
+                        <Font name="Segoe UI Semibold" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </top>
+         <center>
+            <VBox alignment="TOP_CENTER" spacing="20.0" style="-fx-padding: 30;">
+               <children>
+                  <VBox maxWidth="843.0" prefHeight="460.0" prefWidth="843.0" spacing="20.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 30;">
+                     <effect>
+                        <DropShadow offsetY="2.0" radius="10.0">
+                           <color>
+                              <Color opacity="0.15" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                     <children>
+                        <Label text="Registrar Fecha de Tutoría" textFill="#18529d">
+                           <font>
+                              <Font name="Segoe UI Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label text="Complete la información para programar una nueva sesión en el periodo actual." textFill="#666666" wrapText="true">
+                           <font>
+                              <Font name="Segoe UI" size="16.0" />
+                           </font>
+                        </Label>
+                        <Separator prefWidth="200.0" />
+                        <GridPane hgap="20.0" vgap="15.0">
+                          <columnConstraints>
+                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="180.0" minWidth="10.0" prefWidth="150.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="400.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Número de Sesión:" textFill="#333333">
+                                  <font><Font name="Segoe UI Bold" size="16.0" /></font>
+                              </Label>
+                              <VBox spacing="5.0" GridPane.columnIndex="1">
+                                  <children>
+                                      <TextField fx:id="txtNumeroSesion" disable="true" editable="false" maxWidth="150.0" style="-fx-font-size: 16; -fx-opacity: 1; -fx-text-fill: black;" text="Cargando...">
+                                          <font>
+                                              <Font name="Segoe UI Bold" size="16.0" />
+                                          </font>
+                                      </TextField>
+                                      <Label text="* Asignado automáticamente por el sistema" textFill="#888888">
+                                          <font>
+                                              <Font size="12.0" />
+                                          </font>
+                                      </Label>
+                                  </children>
+                              </VBox>
+                              <Label text="Fecha Programada:" textFill="#333333" GridPane.rowIndex="1">
+                                  <font><Font name="Segoe UI Bold" size="16.0" /></font>
+                              </Label>
+                              <DatePicker fx:id="dpFechaTutoria" maxWidth="300.0" promptText="Seleccione la fecha" style="-fx-font-size: 16;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label text="Título de la Sesión:" textFill="#333333" GridPane.rowIndex="2">
+                                 <font><Font name="Segoe UI Bold" size="16.0" /></font>
+                              </Label>
+                              <TextField fx:id="txtTitulo" promptText="Ej. Acercamiento Inicial" style="-fx-font-size: 16;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <font><Font name="Segoe UI" size="14.0" /></font>
+                              </TextField>
+                              <Label text="Descripción (Opcional):" textFill="#333333" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                                 <font><Font name="Segoe UI Bold" size="16.0" /></font>
+                                 <GridPane.margin>
+                                    <Insets top="5.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <TextArea fx:id="txtaDescripcion" prefHeight="83.0" prefWidth="580.0" promptText="Breve descripción del objetivo de la sesión..." style="-fx-font-size: 16;" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <font><Font name="Segoe UI" size="14.0" /></font>
+                              </TextArea>
+                           </children>
+                        </GridPane>
+                        <Separator prefWidth="200.0" />
+                        <HBox alignment="CENTER_RIGHT" spacing="15.0">
+                           <children>
+                              <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#clicCancelar" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #D32F2F; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand; -fx-font-size: 18;" text="Cancelar">
+                                 <font><Font name="Segoe UI Bold" size="14.0" /></font>
+                              </Button>
+                              <Button fx:id="btnRegistrar" mnemonicParsing="false" onAction="#clicRegistrar" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #41B71A; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand; -fx-font-size: 18;" text="Registrar">
+                                 <font><Font name="Segoe UI Bold" size="14.0" /></font>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

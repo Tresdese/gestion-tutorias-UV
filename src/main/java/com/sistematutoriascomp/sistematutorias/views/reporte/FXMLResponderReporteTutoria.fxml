@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="350.0" prefWidth="550.0" style="-fx-background-color: white; -fx-border-color: #18529d; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistematutoriascomp.sistematutorias.controller.reporte.FXMLResponderReporteTutoriaController">
+   <children>
+      <VBox spacing="15.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0">
+         <children>
+            <Label text="Redactar Respuesta" textFill="#18529d">
+               <font>
+                  <Font name="Segoe UI Bold" size="20.0" />
+               </font>
+            </Label>
+            
+            <Separator prefWidth="200.0" />
+            
+            <Label text="Escribe tus comentarios u observaciones para el Tutor Académico:" textFill="#333333">
+               <font>
+                  <Font name="Segoe UI" size="14.0" />
+               </font>
+            </Label>
+            
+            <TextArea fx:id="txtaRespuesta" prefHeight="200.0" prefWidth="200.0" promptText="Escribe aquí la retroalimentación..." wrapText="true" VBox.vgrow="ALWAYS" style="-fx-font-size: 14; -fx-background-color: #F9F9F9;">
+               <font>
+                  <Font name="Segoe UI" size="14.0" />
+               </font>
+            </TextArea>
+            
+            <HBox alignment="CENTER_RIGHT" spacing="15.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#clicCancelar" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #969696; -fx-text-fill: white; -fx-cursor: hand;" text="Cancelar">
+                     <font>
+                        <Font name="Segoe UI Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#clicEnviar" prefHeight="35.0" prefWidth="150.0" style="-fx-background-color: #18529d; -fx-text-fill: white; -fx-cursor: hand;" text="Enviar Respuesta">
+                     <font>
+                        <Font name="Segoe UI Bold" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

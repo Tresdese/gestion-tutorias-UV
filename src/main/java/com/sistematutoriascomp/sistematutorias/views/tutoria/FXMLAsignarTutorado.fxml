@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: linear-gradient(to bottom right, #F2F2F2, #E6E6E6);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistematutoriascomp.sistematutorias.controller.tutoria.FXMLAsignarTutoradoController">
+   <children>
+      <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <HBox alignment="CENTER_LEFT" prefHeight="80.0" spacing="12.0" style="-fx-background-color: #18529d; -fx-padding: 0 20 0 20;">
+               <children>
+                  <Label text="Sistema de Tutorías" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Button mnemonicParsing="false" onAction="#clicCerrarSesion" style="-fx-background-color: rgba(255,255,255,0.15); -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 8 16; -fx-cursor: hand; -fx-font-size: 18;" text="Cerrar sesión">
+                     <font>
+                        <Font name="Segoe UI Semibold" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </top>
+         <center>
+            <VBox alignment="TOP_CENTER" spacing="20.0" style="-fx-padding: 20;">
+               <children>
+                  <VBox maxWidth="860.0" prefHeight="480.0" spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-padding: 25;">
+                     <effect>
+                        <DropShadow offsetY="2.0" radius="10.0">
+                           <color>
+                              <Color opacity="0.15" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                     <children>
+                        <HBox alignment="CENTER_LEFT">
+                           <children>
+                              <VBox>
+                                 <children>
+                                    <Label text="Asignación de Tutorados" textFill="#18529d">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="19.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Seleccione un estudiante de la izquierda y un tutor de la derecha para vincularlos." textFill="#666666">
+                                       <font>
+                                          <Font name="Segoe UI" size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <Separator prefWidth="200.0" />
+                        <HBox spacing="20.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label text="1. Estudiantes sin Tutor" textFill="#333333">
+                                       <font><Font name="Segoe UI Bold" size="15.0" /></font>
+                                    </Label>
+                                    <TableView fx:id="tblTutorados" style="-fx-font-size: 13;" VBox.vgrow="ALWAYS">
+                                      <columns>
+                                        <TableColumn fx:id="tcMatricula" prefWidth="90.0" text="Matrícula" />
+                                        <TableColumn fx:id="tcNombresTutorado" prefWidth="120.0" text="Nombre" />
+                                          <TableColumn fx:id="tcApellidosTutorado" prefWidth="120.0" text="Apellidos" />
+                                      </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                    </TableView>
+                                 </children>
+                              </VBox>
+                              <Separator orientation="VERTICAL" prefHeight="200.0" />
+                              <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label text="2. Tutores Disponibles" textFill="#333333">
+                                       <font><Font name="Segoe UI Bold" size="15.0" /></font>
+                                    </Label>
+                                    <TableView fx:id="tblTutores" style="-fx-font-size: 13;" VBox.vgrow="ALWAYS">
+                                      <columns>
+                                        <TableColumn fx:id="tcNombresTutor" prefWidth="120.0" text="Nombre" />
+                                        <TableColumn fx:id="tcApellidosTutor" prefWidth="120.0" text="Apellidos" />
+                                          <TableColumn fx:id="tcCantidadTutorados" prefWidth="80.0" style="-fx-alignment: CENTER;" text="No. Tutorados" />
+                                      </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                    </TableView>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <Separator prefHeight="0.0" prefWidth="810.0" />
+                        <HBox alignment="CENTER_RIGHT" spacing="15.0">
+                           <children>
+                              <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#clicCancelar" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #D32F2F; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand; -fx-font-size: 18;" text="Cancelar">
+                                 <font><Font name="Segoe UI Bold" size="14.0" /></font>
+                              </Button>
+                              <Button fx:id="btnAsignar" mnemonicParsing="false" onAction="#clicAsignar" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #41B71A; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand; -fx-font-size: 18;" text="Asignar">
+                                 <font><Font name="Segoe UI Bold" size="14.0" /></font>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

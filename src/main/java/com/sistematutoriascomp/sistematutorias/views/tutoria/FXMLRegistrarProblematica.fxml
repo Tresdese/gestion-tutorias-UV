@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #F2F2F2;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistematutoriascomp.sistematutorias.controller.tutoria.FXMLRegistrarProblematicaController">
+   <children>
+      <VBox spacing="15.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <Label text="Registrar Problemática Académica" textFill="#18529d">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            
+            <HBox spacing="10.0">
+               <children>
+                  <Label text="Alumno:" textFill="#757575">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lbNombreAlumno" text="Nombre del Alumno" textFill="#333333">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+
+            <Separator prefWidth="200.0" />
+
+            <VBox spacing="5.0">
+               <children>
+                  <Label text="Título de la problemática:" />
+                  <TextField fx:id="txtTitulo" promptText="Ej. Dificultades con Matemáticas Discretas" style="-fx-background-radius: 5; -fx-border-color: #bdbdbd; -fx-border-radius: 5;" />
+               </children>
+            </VBox>
+
+            <VBox spacing="5.0">
+               <children>
+                  <Label text="Descripción detallada:" />
+                  <TextArea fx:id="txtaDescripcion" prefHeight="150.0" prefWidth="200.0" promptText="Describa la situación" style="-fx-background-radius: 5; -fx-border-color: #bdbdbd; -fx-border-radius: 5;" wrapText="true" />
+               </children>
+            </VBox>
+            
+            <HBox alignment="CENTER_RIGHT" spacing="15.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#clicCancelar" style="-fx-background-color: #cccccc; -fx-text-fill: #333333; -fx-background-radius: 5; -fx-cursor: hand;" text="Cancelar" />
+                  <Button mnemonicParsing="false" onAction="#clicGuardar" style="-fx-background-color: #18529d; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand;" text="Guardar" />
+               </children>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
