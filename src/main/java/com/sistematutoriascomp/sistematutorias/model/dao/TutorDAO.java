@@ -27,6 +27,7 @@ public class TutorDAO {
             + "WHERE t.esActivo = 1 "
             + "GROUP BY t.idTutor, t.nombre, t.apellidoPaterno";
     private static final String SQL_SELECT_ID_POR_NOMBRE = "SELECT idTutor FROM tutor WHERE nombre = ?";
+    private static final String SQL_BAJA = "UPDATE tutor SET esActivo = 0 WHERE numeroDePersonal = ?";
 
     public boolean insertarTutor(Tutor tutor) throws SQLException {
         boolean resultado = false;
@@ -146,6 +147,18 @@ public class TutorDAO {
         tutor.setEsActivo(resultSet.getBoolean("esActivo"));
         tutor.setIdCarrera(resultSet.getInt("idCarrera"));
         return tutor;
+    }
+
+    public boolean darBajaUsuario(String numeroDePersonal) throws SQLException {
+        boolean resultado = false;
+        try (Connection connection = ConexionBaseDatos.abrirConexionBD()) {
+            if (connection != null) {
+                PreparedStatement statement = connection.prepareStatement(SQL_BAJA);
+                statement.setString(1, numeroDePersonal);
+                resultado = statement.executeUpdate() > 0;
+            }
+        }
+        return resultado;
     }
 
     public List<Tutor> getAllTutors() throws SQLException {

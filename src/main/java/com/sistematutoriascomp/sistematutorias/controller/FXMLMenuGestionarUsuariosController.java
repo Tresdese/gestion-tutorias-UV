@@ -26,6 +26,8 @@ public class FXMLMenuGestionarUsuariosController implements Initializable {
 
     @FXML
     private Button btnRegistrarUsuario;
+    @FXML
+    private Button btnEditarUsuario;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -39,7 +41,20 @@ public class FXMLMenuGestionarUsuariosController implements Initializable {
         if (tutor != null) {
             if (rol.equals("ADMINISTRADOR")) {
                 btnRegistrarUsuario.setVisible(true);
+                btnEditarUsuario.setVisible(true);
             }
+        }
+    }
+
+    @FXML
+    private void clicEditarUsuario(ActionEvent event) {
+        try {
+            Utilidades.goToWindow("/usuario/FXMLListaUsuarios.fxml", event, "Editar Usuario");
+        } catch (IOException e) {
+            manejarError("Error al abrir lista de usuarios", e, "No se pudo abrir la ventana de edición.");
+        } catch (Exception ex) {
+            manejarError("Error inesperado al abrir lista de usuarios", ex,
+                    "Ocurrió un error inesperado al abrir la edición.");
         }
     }
 

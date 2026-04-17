@@ -38,6 +38,10 @@ public class FXMLMenuGestionarTutoriasController implements Initializable {
     private Button btnAsignarTutorado;
     @FXML
     private Button btnRegistrarTutorado;
+    @FXML
+    private Button btnEditarTutorado;
+    @FXML
+    private Button btnMisTutorados;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -55,18 +59,22 @@ public class FXMLMenuGestionarTutoriasController implements Initializable {
                 btnRegistrarFecha.setVisible(false);
                 btnAsignarTutorado.setVisible(false);
                 btnRegistrarTutorado.setVisible(false);
+                btnMisTutorados.setVisible(true);
             } else if (rol.equals("COORDINADOR")) {
                 btnRegistrarHorario.setVisible(true);
                 btnRegistrarAsistencia.setVisible(true);
                 btnRegistrarFecha.setVisible(true);
                 btnAsignarTutorado.setVisible(true);
                 btnRegistrarTutorado.setVisible(true);
+                btnEditarTutorado.setVisible(true);
+                btnMisTutorados.setVisible(true);
             } else if (rol.equals("ADMINISTRADOR")) {
                 btnRegistrarHorario.setVisible(true);
                 btnRegistrarAsistencia.setVisible(true);
                 btnRegistrarFecha.setVisible(true);
                 btnAsignarTutorado.setVisible(true);
                 btnRegistrarTutorado.setVisible(true);
+                btnEditarTutorado.setVisible(true);
             }
         }
     }
@@ -106,6 +114,16 @@ public class FXMLMenuGestionarTutoriasController implements Initializable {
     @FXML
     private void clicAsignarTutorado(ActionEvent event) {
         irPantalla("/tutoria/FXMLAsignarTutorado.fxml", "Asignar Tutorado", event);
+    }
+
+    @FXML
+    private void clicEditarTutorado(ActionEvent event) {
+        irPantalla("/tutoria/FXMLListaTutorados.fxml", "Gestión de Tutorados", event);
+    }
+
+    @FXML
+    private void clicMisTutorados(ActionEvent event) {
+        irPantalla("/tutoria/FXMLMisTutorados.fxml", "Mis Tutorados", event);
     }
 
     @FXML
