@@ -50,7 +50,7 @@
             <HBox alignment="CENTER_RIGHT" spacing="15.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#clicCancelar" style="-fx-background-color: #cccccc; -fx-text-fill: #333333; -fx-background-radius: 5; -fx-cursor: hand;" text="Cancelar" />
-                  <Button mnemonicParsing="false" onAction="#clicGuardar" style="-fx-background-color: #18529d; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand;" text="Guardar" />
+                  <Button mnemonicParsing="false" onAction="#clicRegistrar" style="-fx-background-color: #18529d; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand;" text="Registrar" />
                </children>
                <padding>
                   <Insets top="10.0" />

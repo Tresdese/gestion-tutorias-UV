@@ -6,6 +6,7 @@
 package com.sistematutoriascomp.sistematutorias.dominio;
 
 import java.sql.SQLException;
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.List;
 
@@ -84,18 +85,112 @@ public class TutoriaImp {
         try {
             if (TutoriaDAO.subirEvidencia(idTutoria, archivo)) {
                 respuesta.put("error", false);
-                respuesta.put("mensaje", "Evidencia subida correctamente.");
+                respuesta.put("mensaje", "Se ha subido la evidencia correctamente.");
             } else {
                 respuesta.put("mensaje", "No se pudo guardar la evidencia.");
             }
         } catch (SQLException ex) {
             LOGGER.error("Error al subir evidencia de tutoría", ex);
-            respuesta.put("mensaje", "Error BD: " + ex.getMessage());
+            respuesta.put("mensaje", "Error de conexión con base de datos, inténtalo más tarde");
         } catch (Exception ex) {
             LOGGER.error("Error inesperado al subir evidencia de tutoría", ex);
             respuesta.put("mensaje", "Error inesperado: " + ex.getMessage());
         }
 
+        return respuesta;
+    }
+
+    public static HashMap<String, Object> obtenerTutoriasRegistradasTutor() {
+        HashMap<String, Object> respuesta = new HashMap<>();
+        try {
+            int idTutor = Sesion.getTutorSesion().getIdTutor();
+            int idPeriodo = Sesion.getIdPeriodoActual();
+            List<Tutoria> tutorias = TutoriaDAO.obtenerTutoriasPorTutorPeriodo(idTutor, idPeriodo);
+            if (!tutorias.isEmpty()) {
+                respuesta.put("error", false);
+                respuesta.put("tutorias", tutorias);
+            } else {
+                respuesta.put("error", true);
+                respuesta.put("mensaje", "No tienes horarios de tutoría registrados.");
+            }
+        } catch (SQLException ex) {
+            LOGGER.error("Error al obtener tutorías registradas del tutor", ex);
+            respuesta.put("error", true);
+            respuesta.put("mensaje", "Error de conexión con base de datos, inténtalo más tarde.");
+        } catch (Exception ex) {
+            LOGGER.error("Error inesperado al obtener tutorías registradas del tutor", ex);
+            respuesta.put("error", true);
+            respuesta.put("mensaje", "Error inesperado: " + ex.getMessage());
+        }
+        return respuesta;
+    }
+
+    public static HashMap<String, Object> editarHorarioTutoria(int idTutoria, LocalTime nuevaHora) {
+        HashMap<String, Object> respuesta = new HashMap<>();
+        respuesta.put("error", true);
+        try {
+            boolean editado = TutoriaDAO.editarHoraTutoria(idTutoria, nuevaHora);
+            if (editado) {
+                respuesta.put("error", false);
+                respuesta.put("mensaje", "Éxito al editar el horario");
+            } else {
+                respuesta.put("mensaje", "No se pudo editar el horario.");
+            }
+        } catch (SQLException ex) {
+            LOGGER.error("Error al editar horario de tutoría {}", idTutoria, ex);
+            respuesta.put("mensaje", "Error de conexión con base de datos, inténtalo más tarde.");
+        } catch (Exception ex) {
+            LOGGER.error("Error inesperado al editar horario de tutoría {}", idTutoria, ex);
+            respuesta.put("mensaje", "Error inesperado: " + ex.getMessage());
+        }
+        return respuesta;
+    }
+
+    public static HashMap<String, Object> obtenerTutoriasConEvidencia() {
+        HashMap<String, Object> respuesta = new HashMap<>();
+        try {
+            int idTutor = Sesion.getTutorSesion().getIdTutor();
+            int idPeriodo = Sesion.getIdPeriodoActual();
+            List<Tutoria> tutorias = TutoriaDAO.obtenerTutoriasConEvidencia(idTutor, idPeriodo);
+            if (!tutorias.isEmpty()) {
+                respuesta.put("error", false);
+                respuesta.put("tutorias", tutorias);
+            } else {
+                respuesta.put("error", true);
+                respuesta.put("mensaje", "No hay evidencias registradas en el periodo actual.");
+            }
+        } catch (SQLException ex) {
+            LOGGER.error("Error al obtener tutorías con evidencia", ex);
+            respuesta.put("error", true);
+            respuesta.put("mensaje", "Error de conexión con base de datos, inténtalo más tarde.");
+        } catch (Exception ex) {
+            LOGGER.error("Error inesperado al obtener tutorías con evidencia", ex);
+            respuesta.put("error", true);
+            respuesta.put("mensaje", "Error inesperado: " + ex.getMessage());
+        }
+        return respuesta;
+    }
+
+    public static HashMap<String, Object> obtenerEvidenciaTutoria(int idTutoria) {
+        HashMap<String, Object> respuesta = new HashMap<>();
+        try {
+            byte[] evidencia = TutoriaDAO.obtenerEvidencia(idTutoria);
+            if (evidencia != null && evidencia.length > 0) {
+                respuesta.put("error", false);
+                respuesta.put("evidencia", evidencia);
+            } else {
+                respuesta.put("error", true);
+                respuesta.put("mensaje", "No se encontró evidencia para esta sesión.");
+            }
+        } catch (SQLException ex) {
+            LOGGER.error("Error al obtener evidencia de tutoría {}", idTutoria, ex);
+            respuesta.put("error", true);
+            respuesta.put("mensaje", "Error de conexión con base de datos, inténtalo más tarde.");
+        } catch (Exception ex) {
+            LOGGER.error("Error inesperado al obtener evidencia de tutoría {}", idTutoria, ex);
+            respuesta.put("error", true);
+            respuesta.put("mensaje", "Error inesperado: " + ex.getMessage());
+        }
         return respuesta;
     }
 

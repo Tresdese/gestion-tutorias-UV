@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="460.0" style="-fx-background-color: #F2F2F2;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistematutoriascomp.sistematutorias.controller.tutoria.FXMLDetallesProblematicaController">
+    <children>
+        <VBox spacing="14.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="20.0">
+            <children>
+                <Label text="Detalles de la Problemática" textFill="#18529d">
+                    <font>
+                        <Font name="Segoe UI Bold" size="18.0" />
+                    </font>
+                </Label>
+
+                <Separator prefWidth="200.0" />
+
+                <GridPane hgap="10.0" vgap="10.0">
+                    <columnConstraints>
+                        <ColumnConstraints minWidth="100.0" />
+                        <ColumnConstraints hgrow="ALWAYS" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                    </rowConstraints>
+                    <children>
+                        <Label text="Título:" textFill="#757575" GridPane.rowIndex="0">
+                            <font><Font name="Segoe UI Bold" size="13.0" /></font>
+                        </Label>
+                        <Label fx:id="lbTitulo" text="—" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                            <font><Font name="Segoe UI" size="13.0" /></font>
+                        </Label>
+
+                        <Label text="Fecha:" textFill="#757575" GridPane.rowIndex="1">
+                            <font><Font name="Segoe UI Bold" size="13.0" /></font>
+                        </Label>
+                        <Label fx:id="lbFecha" text="—" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                            <font><Font name="Segoe UI" size="13.0" /></font>
+                        </Label>
+
+                        <Label text="Estatus:" textFill="#757575" GridPane.rowIndex="2">
+                            <font><Font name="Segoe UI Bold" size="13.0" /></font>
+                        </Label>
+                        <Label fx:id="lbEstatus" text="—" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                            <font><Font name="Segoe UI" size="13.0" /></font>
+                        </Label>
+                    </children>
+                </GridPane>
+
+                <Label text="Descripción:" textFill="#757575">
+                    <font><Font name="Segoe UI Bold" size="13.0" /></font>
+                </Label>
+                <TextArea fx:id="txtaDescripcion" editable="false" prefHeight="120.0" prefWidth="200.0" wrapText="true"
+                          style="-fx-background-color: #eeeeee; -fx-border-color: #cccccc; -fx-background-radius: 5; -fx-border-radius: 5;" />
+
+                <HBox alignment="CENTER_RIGHT">
+                    <children>
+                        <Button onAction="#clicCerrar" style="-fx-background-color: #18529d; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 6 20; -fx-cursor: hand;" text="Cerrar">
+                            <font><Font name="Segoe UI Semibold" size="13.0" /></font>
+                        </Button>
+                    </children>
+                    <padding><Insets top="6.0" /></padding>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

@@ -12,6 +12,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -26,6 +29,9 @@ public class TutoriaDAO {
     private static final String SQL_COMPROBAR_EXISTENCIA_EVIDENCIA = "SELECT idTutoria FROM tutoria WHERE idTutoria = ? AND evidencia IS NOT NULL";
     private static final String SQL_OBTENER_ID_TUTOR = "SELECT idTutor FROM tutoria WHERE idTutoria = ?";
     private static final String SQL_OBTENER_EVIDENCIA_POR_TUTORIA = "SELECT evidencia FROM tutoria WHERE idTutoria = ?";
+    private static final String SQL_OBTENER_TUTORIAS_POR_TUTOR_PERIODO = "SELECT idTutoria, idTutor, fecha, hora_inicio, idPeriodo FROM tutoria WHERE idTutor = ? AND idPeriodo = ?";
+    private static final String SQL_EDITAR_HORA_TUTORIA = "UPDATE tutoria SET hora_inicio = ? WHERE idTutoria = ?";
+    private static final String SQL_OBTENER_TUTORIAS_CON_EVIDENCIA = "SELECT idTutoria, idTutor, fecha, hora_inicio, idPeriodo FROM tutoria WHERE idTutor = ? AND idPeriodo = ? AND evidencia IS NOT NULL ORDER BY fecha DESC";
     private static final Logger LOGGER = LogManager.getLogger(TutoriaDAO.class);
 
     public static int registrarTutoria(Tutoria tutoria) throws SQLException {
@@ -141,5 +147,80 @@ public class TutoriaDAO {
             }
         }
         return idTutor;
+    }
+
+    public static List<Tutoria> obtenerTutoriasPorTutorPeriodo(int idTutor, int idPeriodo) throws SQLException {
+        List<Tutoria> tutorias = new ArrayList<>();
+        Connection conexion = ConexionBaseDatos.abrirConexionBD();
+        if (conexion != null) {
+            try {
+                PreparedStatement ps = conexion.prepareStatement(SQL_OBTENER_TUTORIAS_POR_TUTOR_PERIODO);
+                ps.setInt(1, idTutor);
+                ps.setInt(2, idPeriodo);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    Tutoria t = new Tutoria();
+                    t.setIdTutoria(rs.getInt("idTutoria"));
+                    t.setIdTutor(rs.getInt("idTutor"));
+                    t.setFecha(rs.getDate("fecha").toLocalDate());
+                    t.setHoraInicio(rs.getTime("hora_inicio").toLocalTime());
+                    t.setIdPeriodo(rs.getInt("idPeriodo"));
+                    tutorias.add(t);
+                }
+            } catch (SQLException e) {
+                LOGGER.error("Error al obtener tutorías por tutor y periodo", e);
+                throw e;
+            } finally {
+                ConexionBaseDatos.cerrarConexionBD();
+            }
+        }
+        return tutorias;
+    }
+
+    public static List<Tutoria> obtenerTutoriasConEvidencia(int idTutor, int idPeriodo) throws SQLException {
+        List<Tutoria> tutorias = new ArrayList<>();
+        Connection conexion = ConexionBaseDatos.abrirConexionBD();
+        if (conexion != null) {
+            try {
+                PreparedStatement ps = conexion.prepareStatement(SQL_OBTENER_TUTORIAS_CON_EVIDENCIA);
+                ps.setInt(1, idTutor);
+                ps.setInt(2, idPeriodo);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    Tutoria t = new Tutoria();
+                    t.setIdTutoria(rs.getInt("idTutoria"));
+                    t.setIdTutor(rs.getInt("idTutor"));
+                    t.setFecha(rs.getDate("fecha").toLocalDate());
+                    t.setHoraInicio(rs.getTime("hora_inicio").toLocalTime());
+                    t.setIdPeriodo(rs.getInt("idPeriodo"));
+                    tutorias.add(t);
+                }
+            } catch (SQLException e) {
+                LOGGER.error("Error al obtener tutorías con evidencia", e);
+                throw e;
+            } finally {
+                ConexionBaseDatos.cerrarConexionBD();
+            }
+        }
+        return tutorias;
+    }
+
+    public static boolean editarHoraTutoria(int idTutoria, LocalTime nuevaHora) throws SQLException {
+        boolean resultado = false;
+        Connection conexion = ConexionBaseDatos.abrirConexionBD();
+        if (conexion != null) {
+            try {
+                PreparedStatement ps = conexion.prepareStatement(SQL_EDITAR_HORA_TUTORIA);
+                ps.setTime(1, Time.valueOf(nuevaHora));
+                ps.setInt(2, idTutoria);
+                resultado = ps.executeUpdate() > 0;
+            } catch (SQLException e) {
+                LOGGER.error("Error al editar hora de tutoría {}", idTutoria, e);
+                throw e;
+            } finally {
+                ConexionBaseDatos.cerrarConexionBD();
+            }
+        }
+        return resultado;
     }
 }

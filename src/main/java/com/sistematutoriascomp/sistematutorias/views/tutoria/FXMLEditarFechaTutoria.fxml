@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: linear-gradient(to bottom right, #F2F2F2, #E6E6E6);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistematutoriascomp.sistematutorias.controller.tutoria.FXMLEditarFechaTutoriaController">
+    <children>
+        <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <top>
+                <HBox alignment="CENTER_LEFT" prefHeight="80.0" spacing="12.0" style="-fx-background-color: #18529d; -fx-padding: 0 20 0 20;">
+                    <children>
+                        <Button onAction="#clicVolver" style="-fx-background-color: rgba(255,255,255,0.15); -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 6 16; -fx-cursor: hand;" text="Volver">
+                            <font>
+                                <Font name="Segoe UI Semibold" size="14.0" />
+                            </font>
+                        </Button>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label text="Editar fecha de tutoría" textFill="WHITE">
+                            <font>
+                                <Font name="Segoe UI Bold" size="22.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+            </top>
+            <center>
+                <VBox alignment="TOP_CENTER" spacing="20.0" style="-fx-padding: 28;">
+                    <children>
+                        <Label maxWidth="600.0" text="Seleccione la fecha de tutoría que desea editar y modifique los datos." textFill="#666666" wrapText="true">
+                            <font>
+                                <Font name="Segoe UI" size="15.0" />
+                            </font>
+                        </Label>
+                        <VBox maxWidth="520.0" spacing="14.0" style="-fx-background-color: white; -fx-background-radius: 14; -fx-padding: 24;">
+                            <effect>
+                                <DropShadow offsetY="2.0" radius="16.0">
+                                    <color>
+                                        <Color blue="0.0" green="0.0" opacity="0.18" red="0.0" />
+                                    </color>
+                                </DropShadow>
+                            </effect>
+                            <children>
+                                <Label text="Fecha de tutoría registrada">
+                                    <font>
+                                        <Font name="Segoe UI Semibold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <ComboBox fx:id="cbFechasTutoria" prefWidth="380.0" promptText="Seleccione una fecha de tutoría" />
+                                <Label text="Nombre">
+                                    <font>
+                                        <Font name="Segoe UI Semibold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="txtTitulo" promptText="Nombre de la sesión" prefWidth="380.0" />
+                                <Label text="Descripción breve">
+                                    <font>
+                                        <Font name="Segoe UI Semibold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <TextArea fx:id="txtaDescripcion" prefHeight="80.0" prefWidth="380.0" promptText="Descripción de la sesión" wrapText="true" />
+                                <Label text="Fecha">
+                                    <font>
+                                        <Font name="Segoe UI Semibold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <DatePicker fx:id="dpFecha" prefWidth="380.0" promptText="Seleccione la fecha" />
+                                <HBox alignment="CENTER_RIGHT" spacing="12.0" style="-fx-padding: 12 0 0 0;">
+                                    <children>
+                                        <Button onAction="#clicCancelar" style="-fx-background-color: #cccccc; -fx-text-fill: #333333; -fx-background-radius: 8; -fx-padding: 6 18;" text="Cancelar">
+                                            <font>
+                                                <Font name="Segoe UI" size="13.0" />
+                                            </font>
+                                        </Button>
+                                        <Button onAction="#clicGuardarCambios" style="-fx-background-color: #18529d; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 6 20; -fx-cursor: hand;" text="Guardar Cambios">
+                                            <font>
+                                                <Font name="Segoe UI Semibold" size="13.0" />
+                                            </font>
+                                        </Button>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+                    </children>
+                </VBox>
+            </center>
+        </BorderPane>
+    </children>
+</AnchorPane>

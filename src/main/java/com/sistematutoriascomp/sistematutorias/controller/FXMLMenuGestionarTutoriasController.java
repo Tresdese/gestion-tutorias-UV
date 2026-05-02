@@ -14,6 +14,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.sistematutoriascomp.sistematutorias.dominio.AsistenciaImp;
+import com.sistematutoriascomp.sistematutorias.dominio.FechaTutoriaImp;
+import com.sistematutoriascomp.sistematutorias.dominio.ProblematicaImp;
 import com.sistematutoriascomp.sistematutorias.dominio.TutoriaImp;
 import com.sistematutoriascomp.sistematutorias.model.pojo.Tutor;
 import com.sistematutoriascomp.sistematutorias.utilidad.Sesion;
@@ -42,6 +44,12 @@ public class FXMLMenuGestionarTutoriasController implements Initializable {
     private Button btnEditarTutorado;
     @FXML
     private Button btnMisTutorados;
+    @FXML
+    private Button btnEditarHorario;
+    @FXML
+    private Button btnEditarFecha;
+    @FXML
+    private Button btnConsultarProblematicas;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -60,6 +68,8 @@ public class FXMLMenuGestionarTutoriasController implements Initializable {
                 btnAsignarTutorado.setVisible(false);
                 btnRegistrarTutorado.setVisible(false);
                 btnMisTutorados.setVisible(true);
+                btnEditarHorario.setVisible(true);
+                btnConsultarProblematicas.setVisible(true);
             } else if (rol.equals("COORDINADOR")) {
                 btnRegistrarHorario.setVisible(true);
                 btnRegistrarAsistencia.setVisible(true);
@@ -68,6 +78,9 @@ public class FXMLMenuGestionarTutoriasController implements Initializable {
                 btnRegistrarTutorado.setVisible(true);
                 btnEditarTutorado.setVisible(true);
                 btnMisTutorados.setVisible(true);
+                btnEditarHorario.setVisible(true);
+                btnEditarFecha.setVisible(true);
+                btnConsultarProblematicas.setVisible(true);
             } else if (rol.equals("ADMINISTRADOR")) {
                 btnRegistrarHorario.setVisible(true);
                 btnRegistrarAsistencia.setVisible(true);
@@ -124,6 +137,42 @@ public class FXMLMenuGestionarTutoriasController implements Initializable {
     @FXML
     private void clicMisTutorados(ActionEvent event) {
         irPantalla("/tutoria/FXMLMisTutorados.fxml", "Mis Tutorados", event);
+    }
+
+    @FXML
+    private void clicConsultarProblematicas(ActionEvent event) {
+        HashMap<String, Object> respuesta = ProblematicaImp.obtenerProblematicasTutor();
+        if (!(boolean) respuesta.get("error")) {
+            irPantalla("/tutoria/FXMLConsultarProblematicaTutorado.fxml", "Consultar Problemáticas", event);
+        } else {
+            Utilidades.mostrarAlertaSimple("Sin problemáticas",
+                    (String) respuesta.get("mensaje"),
+                    Alert.AlertType.WARNING);
+        }
+    }
+
+    @FXML
+    private void clicEditarFecha(ActionEvent event) {
+        HashMap<String, Object> respuesta = FechaTutoriaImp.obtenerFechasTutoria();
+        if (!(boolean) respuesta.get("error")) {
+            irPantalla("/tutoria/FXMLEditarFechaTutoria.fxml", "Editar Fecha de Tutoría", event);
+        } else {
+            Utilidades.mostrarAlertaSimple("Sin fechas registradas",
+                    "Actualmente no hay fechas de tutoría registradas.",
+                    Alert.AlertType.INFORMATION);
+        }
+    }
+
+    @FXML
+    private void clicEditarHorario(ActionEvent event) {
+        HashMap<String, Object> respuesta = TutoriaImp.obtenerTutoriasRegistradasTutor();
+        if (!(boolean) respuesta.get("error")) {
+            irPantalla("/tutoria/FXMLEditarHoraTutoria.fxml", "Editar Horario de Tutoría", event);
+        } else {
+            Utilidades.mostrarAlertaSimple("No se puede continuar",
+                    (String) respuesta.get("mensaje"),
+                    Alert.AlertType.WARNING);
+        }
     }
 
     @FXML

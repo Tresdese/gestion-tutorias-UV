@@ -65,11 +65,11 @@ public class AsistenciaImp {
             for (AsistenciaRow alumno : lista) {
                 AsistenciaDAO.registrarAsistencia(idTutoria, alumno.getIdTutorado(), alumno.isAsistio());
             }
-            respuesta.put("mensaje", "Asistencia registrada correctamente.");
+            respuesta.put("mensaje", "Sesión terminada con éxito");
         } catch (SQLException ex) {
             LOGGER.error("Error al guardar lista de asistencia: " + ex.getMessage());
             respuesta.put("error", true);
-            respuesta.put("mensaje", "Error al guardar: " + ex.getMessage());
+            respuesta.put("mensaje", "Error de conexión con base de datos, inténtalo más tarde");
         }
         return respuesta;
     }
