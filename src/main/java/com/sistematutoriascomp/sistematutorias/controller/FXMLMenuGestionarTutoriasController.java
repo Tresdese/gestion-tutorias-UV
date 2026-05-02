@@ -50,6 +50,10 @@ public class FXMLMenuGestionarTutoriasController implements Initializable {
     private Button btnEditarFecha;
     @FXML
     private Button btnConsultarProblematicas;
+    @FXML
+    private Button btnConsultarEvidencia;
+    @FXML
+    private Button btnRegistrarProblematica;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -70,6 +74,8 @@ public class FXMLMenuGestionarTutoriasController implements Initializable {
                 btnMisTutorados.setVisible(true);
                 btnEditarHorario.setVisible(true);
                 btnConsultarProblematicas.setVisible(true);
+                btnConsultarEvidencia.setVisible(true);
+                btnRegistrarProblematica.setVisible(true);
             } else if (rol.equals("COORDINADOR")) {
                 btnRegistrarHorario.setVisible(true);
                 btnRegistrarAsistencia.setVisible(true);
@@ -81,6 +87,8 @@ public class FXMLMenuGestionarTutoriasController implements Initializable {
                 btnEditarHorario.setVisible(true);
                 btnEditarFecha.setVisible(true);
                 btnConsultarProblematicas.setVisible(true);
+                btnConsultarEvidencia.setVisible(true);
+                btnRegistrarProblematica.setVisible(true);
             } else if (rol.equals("ADMINISTRADOR")) {
                 btnRegistrarHorario.setVisible(true);
                 btnRegistrarAsistencia.setVisible(true);
@@ -164,6 +172,18 @@ public class FXMLMenuGestionarTutoriasController implements Initializable {
     }
 
     @FXML
+    private void clicConsultarEvidencia(ActionEvent event) {
+        HashMap<String, Object> respuesta = TutoriaImp.obtenerTutoriasConEvidencia();
+        if (!(boolean) respuesta.get("error")) {
+            irPantalla("/tutoria/FXMLConsultarEvidenciaTutoria.fxml", "Consultar Evidencia de Tutoría", event);
+        } else {
+            Utilidades.mostrarAlertaSimple("Sin evidencias",
+                    (String) respuesta.get("mensaje"),
+                    Alert.AlertType.INFORMATION);
+        }
+    }
+
+    @FXML
     private void clicEditarHorario(ActionEvent event) {
         HashMap<String, Object> respuesta = TutoriaImp.obtenerTutoriasRegistradasTutor();
         if (!(boolean) respuesta.get("error")) {
@@ -185,6 +205,19 @@ public class FXMLMenuGestionarTutoriasController implements Initializable {
         } catch (Exception ex) {
             manejarError("Error inesperado al cambiar a la ventana de registro de tutorado", ex,
                     "Ocurrió un error inesperado al abrir la ventana de registro de tutorado.");
+        }
+    }
+
+    @FXML
+    private void clicRegistrarProblematica() {
+        try {
+            Utilidades.openModal("/tutoria/FXMLRegistrarProblematica.fxml", "Registrar Problemática");
+        } catch (IOException e) {
+            manejarError("Error al abrir la ventana de registro de problemática", e,
+                    "No se pudo abrir la ventana de registro de problemática.");
+        } catch (Exception ex) {
+            manejarError("Error inesperado al abrir la ventana de registro de problemática", ex,
+                    "Ocurrió un error inesperado al abrir la ventana de registro de problemática.");
         }
     }
 

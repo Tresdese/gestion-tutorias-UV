@@ -93,6 +93,12 @@
                                         <Button fx:id="btnConsultarProblematicas" mnemonicParsing="false" onAction="#clicConsultarProblematicas" prefHeight="70.0" prefWidth="240.0" style="-fx-background-color: #18529d; -fx-text-fill: white; -fx-background-radius: 10; -fx-cursor: hand; -fx-font-size: 18;" text="Consultar Problemáticas" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="3">
                                             <font><Font name="Segoe UI Semibold" size="14.0" /></font>
                                         </Button>
+                                        <Button fx:id="btnConsultarEvidencia" mnemonicParsing="false" onAction="#clicConsultarEvidencia" prefHeight="70.0" prefWidth="240.0" style="-fx-background-color: #FC8B12; -fx-text-fill: white; -fx-background-radius: 10; -fx-cursor: hand; -fx-font-size: 18;" text="Consultar Evidencia" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                            <font><Font name="Segoe UI Semibold" size="14.0" /></font>
+                                        </Button>
+                                        <Button fx:id="btnRegistrarProblematica" mnemonicParsing="false" onAction="#clicRegistrarProblematica" prefHeight="70.0" prefWidth="240.0" style="-fx-background-color: #FC8B12; -fx-text-fill: white; -fx-background-radius: 10; -fx-cursor: hand; -fx-font-size: 18;" text="Registrar Problemática" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                            <font><Font name="Segoe UI Semibold" size="14.0" /></font>
+                                        </Button>
                                     </children>
                                     <VBox.margin>
                                         <Insets top="10.0" />

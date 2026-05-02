@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: linear-gradient(to bottom right, #F2F2F2, #E6E6E6);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sistematutoriascomp.sistematutorias.controller.tutoria.FXMLConsultarEvidenciaTutoriaController">
+    <children>
+        <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+            <top>
+                <HBox alignment="CENTER_LEFT" prefHeight="80.0" spacing="12.0" style="-fx-background-color: #18529d; -fx-padding: 0 20 0 20;">
+                    <children>
+                        <Button onAction="#clicVolver" style="-fx-background-color: rgba(255,255,255,0.15); -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 6 16; -fx-cursor: hand;" text="Volver">
+                            <font>
+                                <Font name="Segoe UI Semibold" size="14.0" />
+                            </font>
+                        </Button>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label text="Evidencias de Tutorías" textFill="WHITE">
+                            <font>
+                                <Font name="Segoe UI Bold" size="22.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+            </top>
+
+            <center>
+                <VBox alignment="TOP_CENTER" spacing="18.0" style="-fx-padding: 24;">
+                    <children>
+
+                        <Label maxWidth="820.0" text="Consulte las evidencias de sus sesiones de tutoría. Use los botones de cada fila para descargar o editar la evidencia." textFill="#666666" wrapText="true">
+                            <font>
+                                <Font name="Segoe UI" size="14.0" />
+                            </font>
+                        </Label>
+
+                        <VBox maxWidth="860.0" spacing="14.0" style="-fx-background-color: white; -fx-background-radius: 14; -fx-padding: 20;">
+                            <effect>
+                                <DropShadow offsetY="2.0" radius="16.0">
+                                    <color>
+                                        <Color blue="0.0" green="0.0" opacity="0.18" red="0.0" />
+                                    </color>
+                                </DropShadow>
+                            </effect>
+                            <children>
+
+                                <TableView fx:id="tvEvidencias" prefHeight="380.0" tableMenuButtonVisible="false">
+                                    <columns>
+                                        <TableColumn fx:id="colFecha" prefWidth="150.0" text="Fecha" />
+                                        <TableColumn fx:id="colHora" prefWidth="150.0" text="Hora Inicio" />
+                                        <TableColumn fx:id="colAcciones" prefWidth="270.0" text="Acciones" />
+                                    </columns>
+                                    <placeholder>
+                                        <Label text="No hay evidencias registradas." />
+                                    </placeholder>
+                                </TableView>
+
+                            </children>
+                        </VBox>
+
+                    </children>
+                </VBox>
+            </center>
+
+        </BorderPane>
+    </children>
+</AnchorPane>
