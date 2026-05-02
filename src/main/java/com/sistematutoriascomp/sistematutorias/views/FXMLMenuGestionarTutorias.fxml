@@ -60,6 +60,7 @@
                                         <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                         <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                         <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                     </rowConstraints>
                                     <children>
                                         <Button fx:id="btnRegistrarFecha" mnemonicParsing="false" onAction="#clicRegistrarFecha" prefHeight="70.0" prefWidth="240.0" style="-fx-background-color: #18529d; -fx-text-fill: white; -fx-background-radius: 10; -fx-cursor: hand; -fx-font-size: 18;" text="Registrar Fecha" GridPane.rowIndex="1">
@@ -82,6 +83,15 @@
                                         </Button>
                                         <Button fx:id="btnMisTutorados" mnemonicParsing="false" onAction="#clicMisTutorados" prefHeight="70.0" prefWidth="240.0" style="-fx-background-color: #FC8B12; -fx-text-fill: white; -fx-background-radius: 10; -fx-cursor: hand; -fx-font-size: 18;" text="Mis Tutorados" visible="false" GridPane.rowIndex="2">
                                             <font><Font name="Segoe UI Semibold" size="16.0" /></font>
+                                        </Button>
+                                        <Button fx:id="btnEditarHorario" mnemonicParsing="false" onAction="#clicEditarHorario" prefHeight="70.0" prefWidth="240.0" style="-fx-background-color: #FC8B12; -fx-text-fill: white; -fx-background-radius: 10; -fx-cursor: hand; -fx-font-size: 18;" text="Editar Horario" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                            <font><Font name="Segoe UI Semibold" size="16.0" /></font>
+                                        </Button>
+                                        <Button fx:id="btnEditarFecha" mnemonicParsing="false" onAction="#clicEditarFecha" prefHeight="70.0" prefWidth="240.0" style="-fx-background-color: #18529d; -fx-text-fill: white; -fx-background-radius: 10; -fx-cursor: hand; -fx-font-size: 18;" text="Editar Fecha" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                            <font><Font name="Segoe UI Semibold" size="16.0" /></font>
+                                        </Button>
+                                        <Button fx:id="btnConsultarProblematicas" mnemonicParsing="false" onAction="#clicConsultarProblematicas" prefHeight="70.0" prefWidth="240.0" style="-fx-background-color: #18529d; -fx-text-fill: white; -fx-background-radius: 10; -fx-cursor: hand; -fx-font-size: 18;" text="Consultar Problemáticas" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                                            <font><Font name="Segoe UI Semibold" size="14.0" /></font>
                                         </Button>
                                     </children>
                                     <VBox.margin>

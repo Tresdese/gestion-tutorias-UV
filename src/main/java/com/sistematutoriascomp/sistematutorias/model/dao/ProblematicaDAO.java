@@ -19,6 +19,12 @@ import com.sistematutoriascomp.sistematutorias.model.pojo.Problematica;
 public class ProblematicaDAO {
     private static final String SQL_INSERT_PROBLEMATICA = "INSERT INTO problematica (idTutorado, idTutoria, titulo, descripcion, fecha, estatus) "
             + "VALUES (?, ?, ?, ?, ?, ?)";
+    private static final String SQL_OBTENER_PROBLEMATICAS_POR_TUTOR =
+            "SELECT p.idProblematica, p.idTutorado, p.idTutoria, p.titulo, p.descripcion, p.fecha, p.estatus "
+            + "FROM problematica p "
+            + "INNER JOIN tutoria tu ON p.idTutoria = tu.idTutoria "
+            + "WHERE tu.idTutor = ? AND tu.idPeriodo = ? "
+            + "ORDER BY p.fecha DESC";
     private static final String SQL_SELECT_PROBLEMATICAS_POR_FECHA = "SELECT p.titulo, p.descripcion "
             + "FROM problematica p "
             + "INNER JOIN tutoria t ON p.idTutoria = t.idTutoria "
@@ -44,6 +50,33 @@ public class ProblematicaDAO {
             }
         }
         return resultado;
+    }
+
+    public static List<Problematica> obtenerProblematicasPorTutor(int idTutor, int idPeriodo) throws SQLException {
+        List<Problematica> lista = new ArrayList<>();
+        Connection conexion = ConexionBaseDatos.abrirConexionBD();
+        if (conexion != null) {
+            try {
+                PreparedStatement ps = conexion.prepareStatement(SQL_OBTENER_PROBLEMATICAS_POR_TUTOR);
+                ps.setInt(1, idTutor);
+                ps.setInt(2, idPeriodo);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    Problematica p = new Problematica();
+                    p.setIdProblematica(rs.getInt("idProblematica"));
+                    p.setIdTutorado(rs.getInt("idTutorado"));
+                    p.setIdTutoria(rs.getInt("idTutoria"));
+                    p.setTitulo(rs.getString("titulo"));
+                    p.setDescripcion(rs.getString("descripcion"));
+                    p.setFecha(rs.getDate("fecha").toLocalDate());
+                    p.setEstatus(rs.getString("estatus"));
+                    lista.add(p);
+                }
+            } finally {
+                ConexionBaseDatos.cerrarConexionBD();
+            }
+        }
+        return lista;
     }
 
     public static List<Problematica> obtenerProblematicasPorFecha(int idFechaTutoria) throws SQLException {

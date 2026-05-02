@@ -35,6 +35,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
@@ -321,6 +322,9 @@ public class FXMLRegistrarAsistenciaTutoradoController implements Initializable 
         }
         File archivo = mostrarSelectorArchivoPdf();
         if (archivo == null) {
+            Utilidades.mostrarAlertaConfirmacion(
+                    "Cancelar acción",
+                    "¿Estás seguro que quieres cancelar la acción?");
             return;
         }
         if (!validarArchivoPdf(archivo)) {
@@ -481,14 +485,22 @@ public class FXMLRegistrarAsistenciaTutoradoController implements Initializable 
 
     @FXML
     private void clicVolver(ActionEvent event) {
-        try {
-            Utilidades.volverMenuGestionarTutorias(event);
-        } catch (IOException ex) {
-            manejarError("Error al volver al menú de tutorías", ex, "No se pudo volver al menú de tutorías.");
-        } catch (Exception e) {
-            manejarError("Error inesperado al volver al menú de tutorías", e,
-                    "Ocurrió un error inesperado al volver al menú de tutorías.");
-        }
+        Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmacion.setTitle("Confirmar");
+        confirmacion.setHeaderText(null);
+        confirmacion.setContentText("¿Estás seguro de volver?");
+        confirmacion.showAndWait().ifPresent(respuesta -> {
+            if (respuesta == ButtonType.OK) {
+                try {
+                    Utilidades.volverMenuGestionarTutorias(event);
+                } catch (IOException ex) {
+                    manejarError("Error al volver al menú de tutorías", ex, "No se pudo volver al menú de tutorías.");
+                } catch (Exception e) {
+                    manejarError("Error inesperado al volver al menú de tutorías", e,
+                            "Ocurrió un error inesperado al volver al menú de tutorías.");
+                }
+            }
+        });
     }
 
     private void limpiarErrorSesion() {

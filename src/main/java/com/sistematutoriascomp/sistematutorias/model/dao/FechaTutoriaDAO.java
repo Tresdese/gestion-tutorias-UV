@@ -10,6 +10,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,8 @@ public class FechaTutoriaDAO {
     private static final String SQL_INSERT_FECHA_TUTORIA = "INSERT INTO fechatutoria (idPeriodo, numeroSesion, fecha, titulo, descripcion) VALUES (?, ?, ?, ?, ?)";
     private static final String SQL_OBTENER_PERIODO_ACTUAL = "SELECT idPeriodo FROM periodo WHERE esActual = 1 LIMIT 1";
     private static final String SQL_MAX_NUMERO_SESION = "SELECT MAX(numeroSesion) FROM fechatutoria WHERE idPeriodo = ?";
+    private static final String SQL_EDITAR_FECHA_TUTORIA = "UPDATE fechatutoria SET titulo = ?, descripcion = ?, fecha = ? WHERE idFechaTutoria = ?";
+    private static final String SQL_VALIDAR_FECHA_NO_COINCIDE = "SELECT COUNT(*) FROM fechatutoria WHERE idPeriodo = ? AND fecha = ? AND idFechaTutoria != ?";
 
     public static List<FechaTutoria> obtenerFechasPorPeriodo(int idPeriodo) throws SQLException {
         List<FechaTutoria> fechas = new ArrayList<>();
@@ -132,6 +135,48 @@ public class FechaTutoriaDAO {
             }
         }
         return siguiente;
+    }
+
+    public static boolean editarFechaTutoria(FechaTutoria fechaTutoria) throws SQLException {
+        boolean resultado = false;
+        Connection conexion = ConexionBaseDatos.abrirConexionBD();
+        if (conexion != null) {
+            try {
+                PreparedStatement ps = conexion.prepareStatement(SQL_EDITAR_FECHA_TUTORIA);
+                ps.setString(1, fechaTutoria.getTitulo());
+                ps.setString(2, fechaTutoria.getDescripcion());
+                ps.setDate(3, Date.valueOf(fechaTutoria.getFecha()));
+                ps.setInt(4, fechaTutoria.getIdFechaTutoria());
+                resultado = ps.executeUpdate() > 0;
+            } catch (SQLException e) {
+                throw e;
+            } finally {
+                ConexionBaseDatos.cerrarConexionBD();
+            }
+        }
+        return resultado;
+    }
+
+    public static boolean validarFechaNoCoincide(int idPeriodo, LocalDate fecha, int idFechaTutoriaExcluir) throws SQLException {
+        boolean sinConflicto = true;
+        Connection conexion = ConexionBaseDatos.abrirConexionBD();
+        if (conexion != null) {
+            try {
+                PreparedStatement ps = conexion.prepareStatement(SQL_VALIDAR_FECHA_NO_COINCIDE);
+                ps.setInt(1, idPeriodo);
+                ps.setDate(2, Date.valueOf(fecha));
+                ps.setInt(3, idFechaTutoriaExcluir);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next() && rs.getInt(1) > 0) {
+                    sinConflicto = false;
+                }
+            } catch (SQLException e) {
+                throw e;
+            } finally {
+                ConexionBaseDatos.cerrarConexionBD();
+            }
+        }
+        return sinConflicto;
     }
 
     private static boolean hasColumn(ResultSet rs, String columnLabel) {
