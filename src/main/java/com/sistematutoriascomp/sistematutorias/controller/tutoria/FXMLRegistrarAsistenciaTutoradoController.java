@@ -1,8 +1,8 @@
 /*
- * Autor: Hernandez Romero Jarly
- * Ultima modificación hecha por: Hernandez Romero Jarly
- * Versión: 7.0
- */
+ * Autor: Darlinghton y Gerardo
+ * Ultima modificación hecha por: Gerardo Abraham Barr+on Gómez
+ * Versión: 1.0
+*/
 package com.sistematutoriascomp.sistematutorias.controller.tutoria;
 
 import com.sistematutoriascomp.sistematutorias.dominio.AsistenciaImp;
@@ -131,7 +131,7 @@ public class FXMLRegistrarAsistenciaTutoradoController implements Initializable 
                         if (asistenciaCerrada) {
                             Utilidades.mostrarAlertaSimple(
                                     "Registro cerrado",
-                                    "La asistencia ya fue registrada. No se pueden agregar más problemáticas.",
+                                    "La asistencia ya está registrada. No se pueden agregar más problemáticas.",
                                     Alert.AlertType.WARNING
                             );
                             return;
@@ -211,7 +211,8 @@ public class FXMLRegistrarAsistenciaTutoradoController implements Initializable 
                 btnSubirEvidencia.setDisable(true);
                 ocultarMensajeInfo();
             }
-        } catch (Exception e) {
+        } 
+        catch (Exception e) {
             manejarError("Error al configurar estado de los botones para la sesión " + idTutoria, e,
                     "No se pudo actualizar el estado de los botones.");
         }
@@ -256,7 +257,7 @@ public class FXMLRegistrarAsistenciaTutoradoController implements Initializable 
 
     private boolean esSesionSeleccionadaValida(Tutoria sesion) {
         if (sesion == null) {
-            lbErrorSesion.setText("Selecciona una sesión");
+            lbErrorSesion.setText("Selecciona al menos una sesión");
             lbErrorSesion.setVisible(true);
             lbErrorSesion.setManaged(true);
             return false;
@@ -268,7 +269,7 @@ public class FXMLRegistrarAsistenciaTutoradoController implements Initializable 
         if (listaAlumnos == null || listaAlumnos.isEmpty()) {
             Utilidades.mostrarAlertaSimple(
                     "Sin alumnos",
-                    "No hay tutorados para registrar asistencia.",
+                    "No hay tutorados asignados para registrar asistencia.",
                     Alert.AlertType.WARNING
             );
             return;
@@ -509,6 +510,8 @@ public class FXMLRegistrarAsistenciaTutoradoController implements Initializable 
         lbErrorSesion.setManaged(false);
     }
 
+    
+    
     private void mostrarMensajeInfo(String texto, String colorHex) {
         lbMensajeInfo.setText(texto);
         lbMensajeInfo.setStyle("-fx-text-fill: " + colorHex + ";");
