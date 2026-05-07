@@ -1,6 +1,6 @@
 /*
- * Autor: Fidel Cruz Reyes
- * Ultima modificación hecha por: Fidel Cruz Reyes
+ * Autor: Darlingthon y Gerardo 
+ * Ultima modificación hecha por: Gerardo
  * Versión: 1.0
  */
 package com.sistematutoriascomp.sistematutorias.controller.tutoria;
@@ -104,7 +104,7 @@ public class FXMLConsultarProblematicaTutoradoController implements Initializabl
             List<Problematica> lista = (List<Problematica>) respuesta.get("problematicas");
             tvProblematicas.setItems(FXCollections.observableArrayList(lista));
         } else {
-            Utilidades.mostrarAlertaSimple("Sin problemáticas",
+            Utilidades.mostrarAlertaSimple("Sin problemáticas registradas",
                     (String) respuesta.get("mensaje"),
                     Alert.AlertType.INFORMATION);
         }
@@ -124,7 +124,7 @@ public class FXMLConsultarProblematicaTutoradoController implements Initializabl
             escenario.initModality(Modality.APPLICATION_MODAL);
             escenario.showAndWait();
         } catch (IOException ex) {
-            manejarError("Error al abrir detalles de problemática " + problematica.getIdProblematica(), ex,
+            manejarError("Error al abrir detalles de la problemática " + problematica.getIdProblematica(), ex,
                     "No se pudo abrir la ventana de detalles.");
         } catch (Exception ex) {
             manejarError("Error inesperado al abrir detalles de problemática", ex,
@@ -133,20 +133,20 @@ public class FXMLConsultarProblematicaTutoradoController implements Initializabl
     }
 
     private void abrirEditarProblematica(Problematica problematica) {
-        // Punto de integración para CU08 - Editar Problemática de Tutorado
+        /* Punto de integración para CU08 - Editar Problemática de Tutorado*/
         Utilidades.mostrarAlertaSimple("En desarrollo",
                 "La función de editar problemática (CU08) será implementada próximamente.",
                 Alert.AlertType.INFORMATION);
     }
 
     private void eliminarProblematica(Problematica problematica) {
-        // Punto de integración para CU09 - Eliminar Problemática
+        /* Punto de integración para CU09 - Eliminar Problemática*/
         Utilidades.mostrarAlertaSimple("En desarrollo",
                 "La función de eliminar problemática (CU09) será implementada próximamente.",
                 Alert.AlertType.INFORMATION);
     }
-
-    @FXML
+    
+     @FXML
     private void clicVolver(ActionEvent event) {
         try {
             Utilidades.volverMenuGestionarTutorias(event);
@@ -157,8 +157,11 @@ public class FXMLConsultarProblematicaTutoradoController implements Initializabl
                     "Ocurrió un error inesperado al volver al menú de tutorías.");
         }
     }
+   
 
-    private void manejarError(String mensajeLog, Exception excepcion, String mensajeUsuario) {
+    
+     private void manejarError(String mensajeLog, Exception excepcion, String mensajeUsuario) {
         Utilidades.manejarErrorTecnico(LOGGER, mensajeLog, excepcion, "Error", mensajeUsuario);
     }
+   
 }
