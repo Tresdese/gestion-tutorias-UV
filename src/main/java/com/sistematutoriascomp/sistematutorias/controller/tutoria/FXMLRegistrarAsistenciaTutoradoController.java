@@ -83,7 +83,8 @@ public class FXMLRegistrarAsistenciaTutoradoController implements Initializable 
         cargarSesiones();
     }
 
-    private void inicializarEstadoUI() {
+   
+     private void inicializarEstadoUI() {
         listaAlumnos = FXCollections.observableArrayList();
         tvAsistencia.setItems(listaAlumnos);
         limpiarErrorSesion();
@@ -91,7 +92,6 @@ public class FXMLRegistrarAsistenciaTutoradoController implements Initializable 
         btnRegistrar.setDisable(false);
         btnSubirEvidencia.setDisable(true);
     }
-
     private void configurarEventos() {
         cbSesiones.valueProperty().addListener((obs, oldVal, newVal) -> onSesionSeleccionada(newVal));
     }
