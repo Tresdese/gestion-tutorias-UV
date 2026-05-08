@@ -1,8 +1,3 @@
-/*
- * Autor: Hernandez Romero Jarly
- * Ultima modificación hecha por: Delgado Santiago Darlington Diego
- * Versión: 4.0
- */
 package com.sistematutoriascomp.sistematutorias.utilidad;
 
 import java.io.IOException;

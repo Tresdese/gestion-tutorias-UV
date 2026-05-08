@@ -72,7 +72,17 @@
                               <Font name="Segoe UI Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#clicConsultar" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #18529d; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand; -fx-font-size: 18;" text="Consultar">
+                        <Button mnemonicParsing="false" onAction="#clicExportar" prefHeight="40.0" prefWidth="140.0" style="-fx-background-color: #e65100; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand;" text="Exportar">
+                           <font>
+                              <Font name="Segoe UI Bold" size="14.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#clicEditar" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #f9a825; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand;" text="Editar">
+                           <font>
+                              <Font name="Segoe UI Bold" size="14.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#clicConsultar" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #18529d; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand;" text="Ver">
                            <font>
                               <Font name="Segoe UI Bold" size="14.0" />
                            </font>

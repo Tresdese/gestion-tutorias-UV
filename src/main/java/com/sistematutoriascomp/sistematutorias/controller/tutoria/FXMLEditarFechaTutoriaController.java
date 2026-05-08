@@ -1,8 +1,3 @@
-/*
- * Autor: Gerardo Abraham Barrón Gómez
- * Ultima modificación hecha por: Gerardo Abraham Barrón Gómez
- * Versión: 1.0
- */
 package com.sistematutoriascomp.sistematutorias.controller.tutoria;
 
 import java.io.IOException;

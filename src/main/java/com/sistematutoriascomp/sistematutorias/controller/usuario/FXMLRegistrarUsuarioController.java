@@ -1,8 +1,3 @@
-/*
- * Autor: Delgado Santiago Darlington Diego
- * Ultima modificación hecha por: Delgado Santiago Darlington Diego
- * Versión: 3.0
- */
 package com.sistematutoriascomp.sistematutorias.controller.usuario;
 
 import java.net.URL;

@@ -1,8 +1,3 @@
-/*
- * Autor: Hernandez Romero Jarly
- * Ultima modificación hecha por: Hernandez Romero Jarly
- * Versión: 4.0
- */
 package com.sistematutoriascomp.sistematutorias.controller.reporte;
 
 import java.net.URL;

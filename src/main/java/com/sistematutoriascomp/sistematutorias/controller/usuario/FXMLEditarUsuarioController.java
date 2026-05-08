@@ -1,8 +1,3 @@
-/*
- * Autor:
- * Ultima modificación hecha por:
- * Versión:
- */
 package com.sistematutoriascomp.sistematutorias.controller.usuario;
 
 import java.net.URL;
