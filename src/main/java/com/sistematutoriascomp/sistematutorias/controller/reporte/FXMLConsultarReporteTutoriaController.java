@@ -42,6 +42,10 @@ import javafx.stage.Stage;
 public class FXMLConsultarReporteTutoriaController implements Initializable {
     private static final Logger LOGGER = LogManager.getLogger(FXMLConsultarReporteTutoriaController.class);
 
+    private static final String ESTILO_BORRADOR = "-fx-background-color: #FFF3CD; -fx-text-fill: #856404; -fx-padding: 5 10; -fx-background-radius: 5;";
+    private static final String ESTILO_ENVIADO  = "-fx-background-color: #D4EDDA; -fx-text-fill: #155724; -fx-padding: 5 10; -fx-background-radius: 5;";
+    private static final String ESTILO_REVISADO = "-fx-background-color: #CCE5FF; -fx-text-fill: #004085; -fx-padding: 5 10; -fx-background-radius: 5;";
+
     @FXML
     private Label lbEstatus;
     @FXML
@@ -105,61 +109,45 @@ public class FXMLConsultarReporteTutoriaController implements Initializable {
     }
 
     private void cargarDatosUI() {
-        if (reporteActual != null) {
-            lbFecha.setText(reporteActual.getFechaFormato());
-            txtaObservaciones.setText(reporteActual.getObservaciones());
-            lbEstatus.setText(reporteActual.getEstatus());
+        if (reporteActual == null) return;
 
-            btnEnviar.setVisible(false);
-            btnEnviar.setManaged(false);
-            btnResponder.setVisible(false);
-            btnResponder.setManaged(false);
+        lbFecha.setText(reporteActual.getFechaFormato());
+        txtaObservaciones.setText(reporteActual.getObservaciones());
 
-            boolean esDelTutorSesion = false;
-            if (Sesion.getTutorSesion() != null && idTutorReporte != null) {
-                esDelTutorSesion = Sesion.getTutorSesion().getIdTutor() == idTutorReporte;
+        String estatus = reporteActual.getEstatus();
+        lbEstatus.setText(estatus);
+
+        btnEnviar.setVisible(false);
+        btnEnviar.setManaged(false);
+        btnResponder.setVisible(false);
+        btnResponder.setManaged(false);
+
+        boolean esDelTutorSesion = Sesion.getTutorSesion() != null
+                && idTutorReporte != null
+                && Sesion.getTutorSesion().getIdTutor() == idTutorReporte;
+
+        if ("BORRADOR".equalsIgnoreCase(estatus)) {
+            lbEstatus.setStyle(ESTILO_BORRADOR);
+            if (esDelTutorSesion) {
+                btnEnviar.setVisible(true);
+                btnEnviar.setManaged(true);
             }
-
+        } else if ("ENVIADO".equalsIgnoreCase(estatus)) {
+            lbEstatus.setStyle(ESTILO_ENVIADO);
             if (esCoordinador) {
-                if ("BORRADOR".equalsIgnoreCase(reporteActual.getEstatus()) && esDelTutorSesion) {
-                    btnEnviar.setVisible(true);
-                    btnEnviar.setManaged(true);
-                    lbEstatus.setStyle(
-                            "-fx-background-color: #FFF3CD; -fx-text-fill: #856404; -fx-padding: 5 10; -fx-background-radius: 5;");
-                }
-
-                if ("ENVIADO".equalsIgnoreCase(reporteActual.getEstatus())) {
-                    btnResponder.setVisible(true);
-                    btnResponder.setManaged(true);
-                    lbEstatus.setStyle(
-                            "-fx-background-color: #D4EDDA; -fx-text-fill: #155724; -fx-padding: 5 10; -fx-background-radius: 5;");
-                } else if ("REVISADO".equalsIgnoreCase(reporteActual.getEstatus())) {
-                    lbEstatus.setStyle(
-                            "-fx-background-color: #CCE5FF; -fx-text-fill: #004085; -fx-padding: 5 10; -fx-background-radius: 5;");
-                }
-            } else {
-                if ("BORRADOR".equalsIgnoreCase(reporteActual.getEstatus()) && esDelTutorSesion) {
-                    btnEnviar.setVisible(true);
-                    btnEnviar.setManaged(true);
-                    lbEstatus.setStyle(
-                            "-fx-background-color: #FFF3CD; -fx-text-fill: #856404; -fx-padding: 5 10; -fx-background-radius: 5;");
-                } else if ("REVISADO".equalsIgnoreCase(reporteActual.getEstatus())) {
-                    lbEstatus.setStyle(
-                            "-fx-background-color: #CCE5FF; -fx-text-fill: #004085; -fx-padding: 5 10; -fx-background-radius: 5;");
-                } else {
-                    lbEstatus.setStyle(
-                            "-fx-background-color: #D4EDDA; -fx-text-fill: #155724; -fx-padding: 5 10; -fx-background-radius: 5;");
-                }
+                btnResponder.setVisible(true);
+                btnResponder.setManaged(true);
             }
+        } else if ("REVISADO".equalsIgnoreCase(estatus)) {
+            lbEstatus.setStyle(ESTILO_REVISADO);
+        }
 
-            if (reporteActual.getRespuesta() != null && !reporteActual.getRespuesta().trim().isEmpty()) {
-                vbRespuesta.setVisible(true);
-                vbRespuesta.setManaged(true);
-                txtaRespuesta.setText(reporteActual.getRespuesta());
-            } else {
-                vbRespuesta.setVisible(false);
-                vbRespuesta.setManaged(false);
-            }
+        boolean tieneRespuesta = reporteActual.getRespuesta() != null
+                && !reporteActual.getRespuesta().trim().isEmpty();
+        vbRespuesta.setVisible(tieneRespuesta);
+        vbRespuesta.setManaged(tieneRespuesta);
+        if (tieneRespuesta) {
+            txtaRespuesta.setText(reporteActual.getRespuesta());
         }
     }
 
@@ -237,9 +225,11 @@ public class FXMLConsultarReporteTutoriaController implements Initializable {
 
     @FXML
     private void clicEnviar(ActionEvent event) {
+        if (reporteActual == null) return;
         boolean confirmar = Utilidades.mostrarAlertaConfirmacion("Confirmar Envío",
                 "No podrás hacer cambios después. ¿Continuar con el envío?");
         if (confirmar) {
+            LOGGER.info("Tutor confirmó el envío del reporte {}.", reporteActual.getIdReporteTutoria());
             enviarReporte();
         }
     }
@@ -247,12 +237,13 @@ public class FXMLConsultarReporteTutoriaController implements Initializable {
     private void enviarReporte() {
         HashMap<String, Object> respuesta = ReporteTutoriaImp.enviarReporte(reporteActual.getIdReporteTutoria());
         if (!(boolean) respuesta.get("error")) {
-            Utilidades.mostrarAlertaSimple("Reporte enviado correctamente", (String) respuesta.get("mensaje"),
+            Utilidades.mostrarAlertaSimple("Envío exitoso", (String) respuesta.get("mensaje"),
                     Alert.AlertType.INFORMATION);
             reporteActual.setEstatus("ENVIADO");
             cargarDatosUI();
         } else {
-            Utilidades.mostrarAlertaSimple("Error", (String) respuesta.get("mensaje"), Alert.AlertType.ERROR);
+            Utilidades.mostrarAlertaSimple("Error de conexión", (String) respuesta.get("mensaje"),
+                    Alert.AlertType.ERROR);
         }
     }
 

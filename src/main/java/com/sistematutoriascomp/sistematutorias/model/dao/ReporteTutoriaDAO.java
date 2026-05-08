@@ -158,16 +158,17 @@ public class ReporteTutoriaDAO {
     }
 
     public static boolean enviarReporte(int idReporte) throws SQLException {
-        boolean resultado = false;
-
-        try (Connection conexion = ConexionBaseDatos.abrirConexionBD()) {
-            if (conexion != null) {
-                PreparedStatement ps = conexion.prepareStatement(SQL_ENVIAR_REPORTE);
-                ps.setInt(1, idReporte);
-                resultado = ps.executeUpdate() > 0;
-            }
+        Connection conexion = ConexionBaseDatos.abrirConexionBD();
+        if (conexion == null) {
+            throw new SQLException("No se pudo establecer conexión con la base de datos.");
         }
-        return resultado;
+        try {
+            PreparedStatement ps = conexion.prepareStatement(SQL_ENVIAR_REPORTE);
+            ps.setInt(1, idReporte);
+            return ps.executeUpdate() > 0;
+        } finally {
+            ConexionBaseDatos.cerrarConexionBD();
+        }
     }
 
     public static List<ReporteTutoria> obtenerReportesPorPeriodo(int idPeriodo) throws SQLException {

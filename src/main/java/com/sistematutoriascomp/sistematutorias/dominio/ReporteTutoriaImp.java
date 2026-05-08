@@ -97,11 +97,13 @@ public class ReporteTutoriaImp {
             if (exito) {
                 respuesta.put("error", false);
                 respuesta.put("mensaje", "Reporte enviado correctamente.");
+                LOGGER.info("Reporte {} enviado correctamente.", idReporte);
             } else {
-                respuesta.put("mensaje", "No se pudo actualizar el estatus del reporte.");
+                respuesta.put("mensaje", "No se encontró el reporte o ya fue enviado anteriormente.");
+                LOGGER.warn("El reporte {} no se actualizó: puede que ya esté enviado o no exista.", idReporte);
             }
         } catch (SQLException e) {
-            respuesta.put("mensaje", "Error de conexión: " + e.getMessage());
+            respuesta.put("mensaje", "Error de conexión con base de datos, inténtalo más tarde.");
             LOGGER.error("Error al enviar reporte {}", idReporte, e);
         }
 
