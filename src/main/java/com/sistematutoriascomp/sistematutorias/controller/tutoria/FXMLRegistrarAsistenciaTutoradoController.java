@@ -311,7 +311,8 @@ public class FXMLRegistrarAsistenciaTutoradoController implements Initializable 
                     "No se pudo habilitar la carga de evidencia.");
         }
     }
-
+    
+    /*CU10: Subir evidencia*/
     @FXML
     private void clicSubirEvidencia(ActionEvent event) {
         Tutoria sesion = cbSesiones.getValue();
@@ -417,7 +418,9 @@ public class FXMLRegistrarAsistenciaTutoradoController implements Initializable 
         return respuesta;
     }
 
-    private void subirEvidenciaAServicio(Tutoria sesion, File archivo) {
+   
+    
+     private void subirEvidenciaAServicio(Tutoria sesion, File archivo) {
         try {
             byte[] datosArchivo = Files.readAllBytes(archivo.toPath());
             HashMap<String, Object> respuesta
@@ -450,7 +453,9 @@ public class FXMLRegistrarAsistenciaTutoradoController implements Initializable 
         }
     }
 
-    private void abrirVentanaProblematica(int idTutorado, String nombreAlumno) {
+    
+     
+     private void abrirVentanaProblematica(int idTutorado, String nombreAlumno) {
         try {
             Tutoria sesionActual = cbSesiones.getValue();
             if (sesionActual == null) {
