@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.sistematutoriascomp.sistematutorias.model.dao.AsistenciaDAO;
 import com.sistematutoriascomp.sistematutorias.model.pojo.AsistenciaRow;
+import com.sistematutoriascomp.sistematutorias.model.pojo.ReporteAsistenciaRow;
 import com.sistematutoriascomp.sistematutorias.model.pojo.Tutoria;
 import com.sistematutoriascomp.sistematutorias.utilidad.Sesion;
 import com.sistematutoriascomp.sistematutorias.utilidad.Utilidades;
@@ -63,6 +64,26 @@ public class AsistenciaImp {
             respuesta.put("mensaje", "Sesión terminada con éxito");
         } catch (SQLException ex) {
             LOGGER.error("Error al guardar lista de asistencia: " + ex.getMessage());
+            respuesta.put("error", true);
+            respuesta.put("mensaje", "Error de conexión con base de datos, inténtalo más tarde");
+        }
+        return respuesta;
+    }
+
+    public static HashMap<String, Object> obtenerReporteAsistencia(int idTutor) {
+        HashMap<String, Object> respuesta = new HashMap<>();
+        try {
+            int idPeriodo = Sesion.getIdPeriodoActual();
+            List<ReporteAsistenciaRow> lista = AsistenciaDAO.obtenerReporteAsistencia(idTutor, idPeriodo);
+            if (lista.isEmpty()) {
+                respuesta.put("error", true);
+                respuesta.put("mensaje", "Actualmente no hay asistencias registradas en el sistema");
+            } else {
+                respuesta.put("error", false);
+                respuesta.put("reporte", lista);
+            }
+        } catch (SQLException ex) {
+            LOGGER.error("Error al obtener reporte de asistencia para tutor {}", idTutor, ex);
             respuesta.put("error", true);
             respuesta.put("mensaje", "Error de conexión con base de datos, inténtalo más tarde");
         }
