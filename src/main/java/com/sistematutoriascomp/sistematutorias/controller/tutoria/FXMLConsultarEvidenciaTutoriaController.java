@@ -1,5 +1,5 @@
 /*
- * Autor: Fidel Cruz Reyes
+ * Autor: Gerardo Abraham Barrón Gómez
  * Ultima modificación hecha por: Fidel Cruz Reyes
  * Versión: 1.0
  */
@@ -52,7 +52,8 @@ public class FXMLConsultarEvidenciaTutoriaController implements Initializable {
         cargarEvidencias();
     }
 
-    private void configurarTabla() {
+    
+private void configurarTabla() {
         colFecha.setCellValueFactory(cellData -> new SimpleStringProperty(
                 cellData.getValue().getFecha() != null ? cellData.getValue().getFecha().toString() : ""));
         colHora.setCellValueFactory(cellData -> new SimpleStringProperty(
@@ -100,6 +101,7 @@ public class FXMLConsultarEvidenciaTutoriaController implements Initializable {
         }
     }
 
+    
     private void descargarEvidencia(Tutoria tutoria) {
         HashMap<String, Object> respuesta = TutoriaImp.obtenerEvidenciaTutoria(tutoria.getIdTutoria());
         if ((boolean) respuesta.get("error")) {
@@ -120,7 +122,7 @@ public class FXMLConsultarEvidenciaTutoriaController implements Initializable {
         File archivoDestino = fileChooser.showSaveDialog(tvEvidencias.getScene().getWindow());
 
         if (archivoDestino == null) {
-            // FA1.1: Usuario canceló el explorador → regresa a la ventana anterior
+            /* FA1.1: Usuario canceló el explorador → regresa a la ventana anterior*/
             return;
         }
 
@@ -136,7 +138,7 @@ public class FXMLConsultarEvidenciaTutoriaController implements Initializable {
     }
 
     private void editarEvidencia(Tutoria tutoria) {
-        // Punto de integración para CU12 - Editar Evidencia de Tutoría
+        /* Punto de integración para CU12 - Editar Evidencia de Tutoría*/
         Utilidades.mostrarAlertaSimple("En desarrollo",
                 "La función de editar evidencia (CU12) será implementada próximamente.",
                 Alert.AlertType.INFORMATION);
@@ -153,7 +155,8 @@ public class FXMLConsultarEvidenciaTutoriaController implements Initializable {
                     "Ocurrió un error inesperado al volver al menú de tutorías.");
         }
     }
-
+    
+    
     private void manejarError(String mensajeLog, Exception excepcion, String mensajeUsuario) {
         Utilidades.manejarErrorTecnico(LOGGER, mensajeLog, excepcion, "Error", mensajeUsuario);
     }
