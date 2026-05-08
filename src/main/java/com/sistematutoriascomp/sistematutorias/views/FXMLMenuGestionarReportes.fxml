@@ -58,6 +58,7 @@
                                     <rowConstraints>
                                         <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                         <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                     </rowConstraints>
                                     <children>
                                         <Button fx:id="btnGenerarReporteTutoria" mnemonicParsing="false" onAction="#clicGenerarReporteTutoria" prefHeight="70.0" prefWidth="330.0" style="-fx-background-color: #41B71A; -fx-text-fill: white; -fx-background-radius: 10; -fx-cursor: hand; -fx-font-size: 18;" text="Generar Reporte de Tutoría" GridPane.columnIndex="0" GridPane.rowIndex="0">
@@ -71,7 +72,10 @@
                                         </Button>       
                                         <Button fx:id="btnConsultarReportesGenerales" mnemonicParsing="false" onAction="#clicConsultarReportesGenerales" prefHeight="70.0" prefWidth="330.0" style="-fx-background-color: #18529d; -fx-text-fill: white; -fx-background-radius: 10; -fx-cursor: hand; -fx-font-size: 18;" text="Consultar Lista de Reportes Generales" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                             <font><Font name="Segoe UI Semibold" size="16.0" /></font>
-                                        </Button>       
+                                        </Button>
+                                        <Button fx:id="btnReporteAsistencia" mnemonicParsing="false" onAction="#clicReporteAsistencia" prefHeight="70.0" prefWidth="330.0" style="-fx-background-color: #41B71A; -fx-text-fill: white; -fx-background-radius: 10; -fx-cursor: hand; -fx-font-size: 18;" text="Consultar Reporte de Asistencia" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                                            <font><Font name="Segoe UI Semibold" size="16.0" /></font>
+                                        </Button>
                                     </children>
                                     <VBox.margin>
                                         <Insets top="15.0" />

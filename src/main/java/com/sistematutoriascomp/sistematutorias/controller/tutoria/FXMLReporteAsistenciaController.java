@@ -1,5 +1,6 @@
 package com.sistematutoriascomp.sistematutorias.controller.tutoria;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.HashMap;
@@ -22,8 +23,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
-
 public class FXMLReporteAsistenciaController implements Initializable {
     private static final Logger LOGGER = LogManager.getLogger(FXMLReporteAsistenciaController.class);
 
@@ -75,7 +74,10 @@ public class FXMLReporteAsistenciaController implements Initializable {
 
     @FXML
     private void clicCerrar(ActionEvent event) {
-        Stage stage = (Stage) tblReporte.getScene().getWindow();
-        stage.close();
+        try {
+            Utilidades.volverMenuGestionarReportes(event);
+        } catch (IOException ex) {
+            LOGGER.error("Error al volver al menú de reportes", ex);
+        }
     }
 }

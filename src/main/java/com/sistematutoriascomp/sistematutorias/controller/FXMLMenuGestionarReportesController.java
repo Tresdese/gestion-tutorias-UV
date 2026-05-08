@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.sistematutoriascomp.sistematutorias.dominio.AsistenciaImp;
 import com.sistematutoriascomp.sistematutorias.dominio.ReporteTutoriaImp;
 import com.sistematutoriascomp.sistematutorias.model.pojo.Tutor;
 import com.sistematutoriascomp.sistematutorias.utilidad.Sesion;
@@ -29,6 +30,8 @@ public class FXMLMenuGestionarReportesController implements Initializable {
     private Button btnGenerarReporteGeneral;
     @FXML
     private Button btnConsultarReportesGenerales;
+    @FXML
+    private Button btnReporteAsistencia;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -44,11 +47,13 @@ public class FXMLMenuGestionarReportesController implements Initializable {
             btnConsultarReportesTutoria.setVisible(true);
             btnGenerarReporteGeneral.setVisible(false);
             btnConsultarReportesGenerales.setVisible(false);
+            btnReporteAsistencia.setVisible(true);
         } else if (rol.equals("COORDINADOR") || rol.equals("ADMINISTRADOR")) {
             btnGenerarReporteTutoria.setVisible(true);
             btnConsultarReportesTutoria.setVisible(true);
             btnGenerarReporteGeneral.setVisible(true);
             btnConsultarReportesGenerales.setVisible(true);
+            btnReporteAsistencia.setVisible(true);
         }
     }
 
@@ -97,6 +102,19 @@ public class FXMLMenuGestionarReportesController implements Initializable {
     @FXML
     private void clicConsultarReportesGenerales(ActionEvent event) {
         irPantalla("/reporte/FXMLAdministrarReporteGeneral.fxml", "Consultar lista de Reportes Generales de Tutoria", event);
+    }
+
+    @FXML
+    private void clicReporteAsistencia(ActionEvent event) {
+        int idTutor = Sesion.getTutorSesion().getIdTutor();
+        HashMap<String, Object> respuesta = AsistenciaImp.obtenerReporteAsistencia(idTutor);
+        if (!(boolean) respuesta.get("error")) {
+            irPantalla("/tutoria/FXMLReporteAsistencia.fxml", "Reporte de Asistencia", event);
+        } else {
+            Utilidades.mostrarAlertaSimple("Sin asistencias",
+                    (String) respuesta.get("mensaje"),
+                    Alert.AlertType.INFORMATION);
+        }
     }
 
     private void irPantalla(String ruta, String titulo, ActionEvent event) {
