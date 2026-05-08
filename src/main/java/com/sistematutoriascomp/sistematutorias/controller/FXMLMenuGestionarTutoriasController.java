@@ -95,6 +95,7 @@ public class FXMLMenuGestionarTutoriasController implements Initializable {
                 btnAsignarTutorado.setVisible(true);
                 btnRegistrarTutorado.setVisible(true);
                 btnEditarTutorado.setVisible(true);
+                btnReporteAsistencia.setVisible(true);
             }
         }
     }
