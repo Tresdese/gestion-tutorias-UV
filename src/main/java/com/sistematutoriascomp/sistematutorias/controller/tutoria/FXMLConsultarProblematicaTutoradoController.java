@@ -1,8 +1,3 @@
-/*
- * Autor: Fidel Cruz Reyes
- * Ultima modificación hecha por: Fidel Cruz Reyes
- * Versión: 1.0
- */
 package com.sistematutoriascomp.sistematutorias.controller.tutoria;
 
 import java.io.IOException;

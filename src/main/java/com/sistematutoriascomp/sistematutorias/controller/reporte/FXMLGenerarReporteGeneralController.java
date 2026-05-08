@@ -1,8 +1,3 @@
-/*
- * Autor: Soria Vazquez Mariana
- * Ultima modificación hecha por: Soria Vazquez Mariana
- * Versión: 6.0
- */
 package com.sistematutoriascomp.sistematutorias.controller.reporte;
 
 import com.sistematutoriascomp.sistematutorias.dominio.ReporteGeneralImp;

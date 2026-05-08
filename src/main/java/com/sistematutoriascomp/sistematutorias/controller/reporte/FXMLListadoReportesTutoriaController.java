@@ -1,8 +1,3 @@
-/*
- * Autor: Delgado Santiago Darlington Diego
- * Ultima modificación hecha por: Delgado Santiago Darlington Diego
- * Versión: 4.0
- */
 package com.sistematutoriascomp.sistematutorias.controller.reporte;
 
 import java.io.IOException;
@@ -155,6 +150,30 @@ public class FXMLListadoReportesTutoriaController implements Initializable {
             manejarError("Error inesperado al abrir detalles del reporte", e,
                     "Ocurrió un error inesperado al abrir la ventana de detalles.");
         }
+    }
+
+    @FXML
+    private void clicEditar(ActionEvent event) {
+        ReporteTutoria reporteSeleccionado = tblReportesTutoria.getSelectionModel().getSelectedItem();
+        if (reporteSeleccionado == null) {
+            Utilidades.mostrarAlertaSimple("Selección requerida", "Por favor, selecciona un reporte de la lista.", Alert.AlertType.WARNING);
+            return;
+        }
+        if (!"BORRADOR".equalsIgnoreCase(reporteSeleccionado.getEstatus())) {
+            Utilidades.mostrarAlertaSimple("No editable", "Solo se pueden editar reportes en estado BORRADOR.", Alert.AlertType.WARNING);
+            return;
+        }
+        Utilidades.mostrarAlertaSimple("En construcción", "La funcionalidad de editar reporte (CU15) aún no está implementada.", Alert.AlertType.INFORMATION);
+    }
+
+    @FXML
+    private void clicExportar(ActionEvent event) {
+        ReporteTutoria reporteSeleccionado = tblReportesTutoria.getSelectionModel().getSelectedItem();
+        if (reporteSeleccionado == null) {
+            Utilidades.mostrarAlertaSimple("Selección requerida", "Por favor, selecciona un reporte de la lista.", Alert.AlertType.WARNING);
+            return;
+        }
+        Utilidades.mostrarAlertaSimple("En construcción", "La funcionalidad de exportar reporte (CU16) aún no está implementada.", Alert.AlertType.INFORMATION);
     }
 
     @FXML
