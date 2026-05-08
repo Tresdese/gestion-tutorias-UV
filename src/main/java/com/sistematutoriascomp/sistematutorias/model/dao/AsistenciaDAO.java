@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.sistematutoriascomp.sistematutorias.model.ConexionBaseDatos;
 import com.sistematutoriascomp.sistematutorias.model.pojo.AsistenciaRow;
+import com.sistematutoriascomp.sistematutorias.model.pojo.ReporteAsistenciaRow;
 import com.sistematutoriascomp.sistematutorias.model.pojo.Tutoria;
 
 public class AsistenciaDAO {
@@ -24,6 +25,17 @@ public class AsistenciaDAO {
     private static final String SQL_REGISTRAR_ASISTENCIA = "INSERT INTO asistencia (idTutoria, idTutorado, asistio) VALUES (?, ?, ?) "
             + "ON DUPLICATE KEY UPDATE asistio = VALUES(asistio)";
     private static final String SQL_EXISTE_ASISTENCIA_POR_TUTORIA = "SELECT COUNT(*) AS total FROM asistencia WHERE idTutoria = ?";
+    private static final String SQL_OBTENER_REPORTE_ASISTENCIA =
+            "SELECT t.matricula, "
+            + "CONCAT(t.nombre, ' ', t.apellidoPaterno, ' ', t.apellidoMaterno) AS nombreCompleto, "
+            + "t.semestre, "
+            + "tu.fecha AS fechaSesion, "
+            + "a.asistio "
+            + "FROM asistencia a "
+            + "INNER JOIN tutorado t ON a.idTutorado = t.idTutorado "
+            + "INNER JOIN tutoria tu ON a.idTutoria = tu.idTutoria "
+            + "WHERE tu.idTutor = ? AND tu.idPeriodo = ? "
+            + "ORDER BY tu.fecha DESC, t.apellidoPaterno, t.nombre";
 
     public static List<Tutoria> obtenerSesionesPorTutor(int idTutor, int idPeriodo) throws SQLException {
         List<Tutoria> sesiones = new ArrayList<>();
@@ -94,6 +106,32 @@ public class AsistenciaDAO {
             }
         }
         return registrado;
+    }
+
+    public static List<ReporteAsistenciaRow> obtenerReporteAsistencia(int idTutor, int idPeriodo) throws SQLException {
+        List<ReporteAsistenciaRow> lista = new ArrayList<>();
+        Connection conexion = ConexionBaseDatos.abrirConexionBD();
+        if (conexion == null) {
+            throw new SQLException("No se pudo establecer conexión con la base de datos.");
+        }
+        try {
+            PreparedStatement ps = conexion.prepareStatement(SQL_OBTENER_REPORTE_ASISTENCIA);
+            ps.setInt(1, idTutor);
+            ps.setInt(2, idPeriodo);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                lista.add(new ReporteAsistenciaRow(
+                        rs.getString("matricula"),
+                        rs.getString("nombreCompleto"),
+                        rs.getInt("semestre"),
+                        rs.getDate("fechaSesion").toLocalDate().toString(),
+                        rs.getBoolean("asistio")
+                ));
+            }
+        } finally {
+            ConexionBaseDatos.cerrarConexionBD();
+        }
+        return lista;
     }
 
     public static boolean existeAsistenciaParaTutoria(int idTutoria) throws SQLException {

@@ -49,6 +49,8 @@ public class FXMLMenuGestionarTutoriasController implements Initializable {
     private Button btnConsultarEvidencia;
     @FXML
     private Button btnRegistrarProblematica;
+    @FXML
+    private Button btnReporteAsistencia;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -71,6 +73,7 @@ public class FXMLMenuGestionarTutoriasController implements Initializable {
                 btnConsultarProblematicas.setVisible(true);
                 btnConsultarEvidencia.setVisible(true);
                 btnRegistrarProblematica.setVisible(true);
+                btnReporteAsistencia.setVisible(true);
             } else if (rol.equals("COORDINADOR")) {
                 btnRegistrarHorario.setVisible(true);
                 btnRegistrarAsistencia.setVisible(true);
@@ -84,6 +87,7 @@ public class FXMLMenuGestionarTutoriasController implements Initializable {
                 btnConsultarProblematicas.setVisible(true);
                 btnConsultarEvidencia.setVisible(true);
                 btnRegistrarProblematica.setVisible(true);
+                btnReporteAsistencia.setVisible(true);
             } else if (rol.equals("ADMINISTRADOR")) {
                 btnRegistrarHorario.setVisible(true);
                 btnRegistrarAsistencia.setVisible(true);
@@ -200,6 +204,19 @@ public class FXMLMenuGestionarTutoriasController implements Initializable {
         } catch (Exception ex) {
             manejarError("Error inesperado al cambiar a la ventana de registro de tutorado", ex,
                     "Ocurrió un error inesperado al abrir la ventana de registro de tutorado.");
+        }
+    }
+
+    @FXML
+    private void clicReporteAsistencia(ActionEvent event) {
+        int idTutor = Sesion.getTutorSesion().getIdTutor();
+        HashMap<String, Object> respuesta = AsistenciaImp.obtenerReporteAsistencia(idTutor);
+        if (!(boolean) respuesta.get("error")) {
+            irPantalla("/tutoria/FXMLReporteAsistencia.fxml", "Reporte de Asistencia", event);
+        } else {
+            Utilidades.mostrarAlertaSimple("Sin asistencias",
+                    (String) respuesta.get("mensaje"),
+                    Alert.AlertType.INFORMATION);
         }
     }
 
