@@ -1,7 +1,7 @@
 /*
- * Autor: Soria Vazquez Mariana
- * Ultima modificación hecha por: Soria Vazquez Mariana
- * Versión: 3.0
+ * Autor: Darlinghton, Gerardo , Fidel
+ * Ultima modificación hecha por: Gerardo
+ * Versión: 2.0
  */
 package com.sistematutoriascomp.sistematutorias.controller.reporte;
 
@@ -194,6 +194,9 @@ public class FXMLConsultarReporteTutoriaController implements Initializable {
         } catch (SQLException e) {
             manejarError("Error al cargar problemáticas del reporte", e,
                     "No se pudieron cargar las problemáticas de la tutoría.");
+        }catch (Exception e ){
+            manejarError("Error general.", e, 
+                    "Hubo un problema al recuperar la información.");
         }
     }
 
@@ -211,6 +214,9 @@ public class FXMLConsultarReporteTutoriaController implements Initializable {
             manejarError("Error al obtener evidencia para la tutoría " + idTutoria, e,
                     "No se pudo obtener la evidencia de la sesión.");
             btnDescargarEvidencia.setDisable(true);
+        }catch (Exception e){
+            manejarError("Error general", e, 
+                    "Hubo un problema al recuperar la información");
         }
     }
 
@@ -249,6 +255,7 @@ public class FXMLConsultarReporteTutoriaController implements Initializable {
         }
     }
 
+    
     private void enviarReporte() {
         HashMap<String, Object> respuesta = ReporteTutoriaImp.enviarReporte(reporteActual.getIdReporteTutoria());
         if (!(boolean) respuesta.get("error")) {
@@ -296,6 +303,7 @@ public class FXMLConsultarReporteTutoriaController implements Initializable {
         }
     }
 
+    
     @FXML
     private void clicVolver(ActionEvent event) {
         Utilidades.cerrarVentana(event);
