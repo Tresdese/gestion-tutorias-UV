@@ -121,6 +121,9 @@ public class FXMLInicioSesionController implements Initializable {
         } catch (IOException ex) {
             Utilidades.manejarErrorTecnico(LOGGER, "Error al abrir el menú principal", ex, "Error",
                     "No se pudo abrir el menú principal.");
+        } catch (Exception ex) {
+            Utilidades.manejarErrorTecnico(LOGGER, "Error inesperado al abrir el menú principal", ex, "Error",
+                    "Ocurrió un error inesperado al abrir el menú principal.");
         }
     }
 }
