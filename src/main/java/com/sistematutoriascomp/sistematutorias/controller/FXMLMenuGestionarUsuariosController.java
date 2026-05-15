@@ -1,8 +1,3 @@
-/*
- * Autor: Hernandez Romero Jarly
- * Ultima modificación hecha por: Delgado Santiago Darlington Diego
- * Versión: 2.0
- */
 package com.sistematutoriascomp.sistematutorias.controller;
 
 import java.io.IOException;
@@ -28,6 +23,8 @@ public class FXMLMenuGestionarUsuariosController implements Initializable {
     private Button btnRegistrarUsuario;
     @FXML
     private Button btnEditarUsuario;
+    @FXML
+    private Button btnConsultarListaTutores;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -42,6 +39,8 @@ public class FXMLMenuGestionarUsuariosController implements Initializable {
             if (rol.equals("ADMINISTRADOR")) {
                 btnRegistrarUsuario.setVisible(true);
                 btnEditarUsuario.setVisible(true);
+            } else if (rol.equals("COORDINADOR")) {
+                btnConsultarListaTutores.setVisible(true);
             }
         }
     }
@@ -68,6 +67,18 @@ public class FXMLMenuGestionarUsuariosController implements Initializable {
         } catch (Exception ex) {
             manejarError("Error inesperado al cambiar a la ventana de registro de usuario", ex,
                     "Ocurrió un error inesperado al abrir la ventana de registro.");
+        }
+    }
+
+    @FXML
+    private void clicConsultarListaTutores(ActionEvent event) {
+        try {
+            Utilidades.goToWindow("/tutoria/FXMLConsultarListaTutores.fxml", event, "Consultar Lista de Tutores");
+        } catch (IOException e) {
+            manejarError("Error al abrir lista de tutores", e, "No se pudo abrir la ventana.");
+        } catch (Exception ex) {
+            manejarError("Error inesperado al abrir lista de tutores", ex,
+                    "Ocurrió un error inesperado al abrir la ventana.");
         }
     }
 
