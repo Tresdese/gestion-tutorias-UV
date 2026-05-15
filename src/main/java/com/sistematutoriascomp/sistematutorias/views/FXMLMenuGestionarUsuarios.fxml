@@ -58,6 +58,9 @@
                                         <Button fx:id="btnEditarUsuario" mnemonicParsing="false" onAction="#clicEditarUsuario" prefHeight="70.0" prefWidth="300.0" style="-fx-background-color: #8E24AA; -fx-text-fill: white; -fx-background-radius: 10; -fx-cursor: hand; -fx-font-size: 18;" text="Editar Usuario" visible="false">
                                             <font><Font name="Segoe UI Semibold" size="16.0" /></font>
                                         </Button>
+                                        <Button fx:id="btnConsultarListaTutores" mnemonicParsing="false" onAction="#clicConsultarListaTutores" prefHeight="70.0" prefWidth="300.0" style="-fx-background-color: #8E24AA; -fx-text-fill: white; -fx-background-radius: 10; -fx-cursor: hand; -fx-font-size: 18;" text="Consultar Lista de Tutores" visible="false">
+                                            <font><Font name="Segoe UI Semibold" size="14.0" /></font>
+                                        </Button>
                                     </children>
                                     <VBox.margin>
                                         <Insets top="15.0" />
