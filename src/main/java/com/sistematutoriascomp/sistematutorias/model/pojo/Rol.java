@@ -1,8 +1,3 @@
-/*
- * Autor: Delgado Santiago Darlington
- * Ultima modificación hecha por: Delgado Santiago Darlington
- * Versión: 3.0
- */
 package com.sistematutoriascomp.sistematutorias.model.pojo;
 
 public class Rol {

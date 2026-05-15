@@ -1,8 +1,3 @@
-/*
- * Autor: Soria Vazquez Mariana
- * Ultima modificación hecha por: Soria Vazquez Mariana
- * Versión: 3.0
- */
 package com.sistematutoriascomp.sistematutorias.model.dao;
 
 import com.sistematutoriascomp.sistematutorias.model.ConexionBaseDatos;

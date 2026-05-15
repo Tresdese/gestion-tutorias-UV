@@ -1,8 +1,3 @@
-/*
- * Autor: Hernandez Romero Jarly
- * Ultima modificación hecha por: Delgado Santiago Darlington Diego
- * Versión: 4.0
- */
 package com.sistematutoriascomp.sistematutorias.controller;
 
 import java.io.IOException;
@@ -54,6 +49,8 @@ public class FXMLMenuGestionarTutoriasController implements Initializable {
     private Button btnConsultarEvidencia;
     @FXML
     private Button btnRegistrarProblematica;
+    @FXML
+    private Button btnConsultarListaTutorados;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -66,37 +63,49 @@ public class FXMLMenuGestionarTutoriasController implements Initializable {
 
         if (tutor != null) {
             if (rol.equals("ACADEMICO")) {
-                btnRegistrarHorario.setVisible(true);
-                btnRegistrarAsistencia.setVisible(true);
-                btnRegistrarFecha.setVisible(false);
-                btnAsignarTutorado.setVisible(false);
-                btnRegistrarTutorado.setVisible(false);
-                btnMisTutorados.setVisible(true);
-                btnEditarHorario.setVisible(true);
-                btnConsultarProblematicas.setVisible(true);
-                btnConsultarEvidencia.setVisible(true);
-                btnRegistrarProblematica.setVisible(true);
+                actualizarVisibilidadBotones(btnRegistrarHorario, true);
+                actualizarVisibilidadBotones(btnRegistrarAsistencia, true);
+                actualizarVisibilidadBotones(btnRegistrarFecha, false);
+                actualizarVisibilidadBotones(btnAsignarTutorado, false);
+                actualizarVisibilidadBotones(btnRegistrarTutorado, false);
+                actualizarVisibilidadBotones(btnMisTutorados, true);
+                actualizarVisibilidadBotones(btnEditarHorario, true);
+                actualizarVisibilidadBotones(btnConsultarProblematicas, true);
+                actualizarVisibilidadBotones(btnConsultarEvidencia, true);
+                actualizarVisibilidadBotones(btnRegistrarProblematica, true);
             } else if (rol.equals("COORDINADOR")) {
-                btnRegistrarHorario.setVisible(true);
-                btnRegistrarAsistencia.setVisible(true);
-                btnRegistrarFecha.setVisible(true);
-                btnAsignarTutorado.setVisible(true);
-                btnRegistrarTutorado.setVisible(true);
-                btnEditarTutorado.setVisible(true);
-                btnMisTutorados.setVisible(true);
-                btnEditarHorario.setVisible(true);
-                btnEditarFecha.setVisible(true);
-                btnConsultarProblematicas.setVisible(true);
-                btnConsultarEvidencia.setVisible(true);
-                btnRegistrarProblematica.setVisible(true);
+                actualizarVisibilidadBotones(btnRegistrarHorario, true);
+                actualizarVisibilidadBotones(btnRegistrarAsistencia, true);
+                actualizarVisibilidadBotones(btnRegistrarFecha, true);
+                actualizarVisibilidadBotones(btnAsignarTutorado, true);
+                actualizarVisibilidadBotones(btnRegistrarTutorado, true);
+                actualizarVisibilidadBotones(btnEditarTutorado, true);
+                actualizarVisibilidadBotones(btnMisTutorados, true);
+                actualizarVisibilidadBotones(btnEditarHorario, true);
+                actualizarVisibilidadBotones(btnEditarFecha, true);
+                actualizarVisibilidadBotones(btnConsultarProblematicas, true);
+                actualizarVisibilidadBotones(btnConsultarEvidencia, true);
+                actualizarVisibilidadBotones(btnRegistrarProblematica, true);
+                actualizarVisibilidadBotones(btnConsultarListaTutorados, true);
             } else if (rol.equals("ADMINISTRADOR")) {
-                btnRegistrarHorario.setVisible(true);
-                btnRegistrarAsistencia.setVisible(true);
-                btnRegistrarFecha.setVisible(true);
-                btnAsignarTutorado.setVisible(true);
-                btnRegistrarTutorado.setVisible(true);
-                btnEditarTutorado.setVisible(true);
+                actualizarVisibilidadBotones(btnRegistrarHorario, true);
+                actualizarVisibilidadBotones(btnRegistrarAsistencia, true);
+                actualizarVisibilidadBotones(btnRegistrarFecha, true);
+                actualizarVisibilidadBotones(btnAsignarTutorado, true);
+                actualizarVisibilidadBotones(btnRegistrarTutorado, true);
+                actualizarVisibilidadBotones(btnEditarTutorado, true);
+                actualizarVisibilidadBotones(btnConsultarListaTutorados, true);
             }
+        }
+    }
+
+    private void actualizarVisibilidadBotones(Button boton, boolean visible) {
+        if (visible) {
+            boton.setVisible(true);
+            boton.setDisable(false);
+        } else {
+            boton.setVisible(false);
+            boton.setDisable(true);
         }
     }
 
@@ -206,6 +215,11 @@ public class FXMLMenuGestionarTutoriasController implements Initializable {
             manejarError("Error inesperado al cambiar a la ventana de registro de tutorado", ex,
                     "Ocurrió un error inesperado al abrir la ventana de registro de tutorado.");
         }
+    }
+
+    @FXML
+    private void clicConsultarListaTutorados(ActionEvent event) {
+        irPantalla("/tutoria/FXMLConsultarListaTutorados.fxml", "Consultar Lista de Tutorados", event);
     }
 
     @FXML

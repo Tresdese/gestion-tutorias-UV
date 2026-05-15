@@ -1,8 +1,3 @@
-/*
- * Autor: Delgado Santiago Darlington Diego
- * Ultima modificación hecha por: Delgado Santiago Darlington Diego
- * Versión: 4.0
- */
 package com.sistematutoriascomp.sistematutorias.controller.reporte;
 
 import java.io.IOException;

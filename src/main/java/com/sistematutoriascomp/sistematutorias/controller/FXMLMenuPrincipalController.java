@@ -1,8 +1,3 @@
-/*
- * Autor: Hernandez Romero Jarly
- * Ultima modificación hecha por: Delgado Santiago Darlington Diego
- * Versión: 3.0
- */
 package com.sistematutoriascomp.sistematutorias.controller;
 
 import java.io.IOException;
@@ -72,22 +67,32 @@ public class FXMLMenuPrincipalController implements Initializable {
     private void configurarPermisos() {
         String rol = Sesion.getRolActual();
 
-        btnGestionarTutorias.setVisible(false);
-        btnGestionarReportes.setVisible(false);
-        btnGestionarUsuarios.setVisible(false);
+        actualizarVisibilidadBotones(btnGestionarTutorias, false);
+        actualizarVisibilidadBotones(btnGestionarReportes, false);
+        actualizarVisibilidadBotones(btnGestionarUsuarios, false);
 
         if ("ACADEMICO".equals(rol)) {
-            btnGestionarTutorias.setVisible(true);
-            btnGestionarReportes.setVisible(true);
-            btnGestionarUsuarios.setVisible(false);
+            actualizarVisibilidadBotones(btnGestionarTutorias, true);
+            actualizarVisibilidadBotones(btnGestionarReportes, true);
+            actualizarVisibilidadBotones(btnGestionarUsuarios, false);
         } else if ("COORDINADOR".equals(rol)) {
-            btnGestionarTutorias.setVisible(true);
-            btnGestionarReportes.setVisible(true);
-            btnGestionarUsuarios.setVisible(false);
+            actualizarVisibilidadBotones(btnGestionarTutorias, true);
+            actualizarVisibilidadBotones(btnGestionarReportes, true);
+            actualizarVisibilidadBotones(btnGestionarUsuarios, true);
         } else if ("ADMINISTRADOR".equals(rol)) {
-            btnGestionarTutorias.setVisible(true);
-            btnGestionarReportes.setVisible(true);
-            btnGestionarUsuarios.setVisible(true);
+            actualizarVisibilidadBotones(btnGestionarTutorias, true);
+            actualizarVisibilidadBotones(btnGestionarReportes, true);
+            actualizarVisibilidadBotones(btnGestionarUsuarios, true);
+        }
+    }
+
+    private void actualizarVisibilidadBotones(Button boton, boolean visible) {
+        if (visible) {
+            boton.setVisible(true);
+            boton.setDisable(false);
+        } else {
+            boton.setVisible(false);
+            boton.setDisable(true);
         }
     }
 

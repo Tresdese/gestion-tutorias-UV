@@ -1,8 +1,3 @@
-/*
- * Autor: Hernandez Romero Jarly
- * Ultima modificación hecha por: Delgado Santiago Darlington Diego
- * Versión: 4.0
- */
 package com.sistematutoriascomp.sistematutorias.utilidad;
 
 import java.io.IOException;
@@ -93,6 +88,10 @@ public class Utilidades {
 
     public static void volverMenuGestionarTutorias(ActionEvent event) throws IOException, NullPointerException {
         goToWindow("/FXMLMenuGestionarTutorias.fxml", event, "Menú Gestión de Tutorías");
+    }
+
+    public static void volverMenuGestionarUsuarios(ActionEvent event) throws IOException, NullPointerException {
+        goToWindow("/FXMLMenuGestionarUsuarios.fxml", event, "Gestión de Usuarios del Sistema");
     }
 
     public static void clicCerrarSesion(ActionEvent event) throws IOException, NullPointerException {

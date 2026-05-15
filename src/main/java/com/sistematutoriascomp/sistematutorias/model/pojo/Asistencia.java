@@ -1,8 +1,3 @@
-/*
- * Autor: Hernandez Romero Jarly
- * Ultima modificación hecha por: Hernandez Romero Jarly
- * Versión: 2.0
- */
 package com.sistematutoriascomp.sistematutorias.model.pojo;
 
 public class Asistencia {

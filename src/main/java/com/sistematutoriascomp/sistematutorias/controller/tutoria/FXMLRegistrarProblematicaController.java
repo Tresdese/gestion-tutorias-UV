@@ -1,8 +1,3 @@
-/*
- * Autor: Hernandez Romero Jarly
- * Ultima modificación hecha por: Hernandez Romero Jarly
- * Versión: 3.0
- */
 package com.sistematutoriascomp.sistematutorias.controller.tutoria;
 
 import java.net.URL;

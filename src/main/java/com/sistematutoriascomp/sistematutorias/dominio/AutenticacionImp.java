@@ -1,8 +1,3 @@
-/*
- * Autor: Henrnadez Romero Jarly
- * Ultima modificación hecha por: Delgado Santiago Darlington
- * Versión: 3.0
- */
 package com.sistematutoriascomp.sistematutorias.dominio;
 
 import java.sql.SQLException;
