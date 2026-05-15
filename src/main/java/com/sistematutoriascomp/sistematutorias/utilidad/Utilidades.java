@@ -90,6 +90,10 @@ public class Utilidades {
         goToWindow("/FXMLMenuGestionarTutorias.fxml", event, "Menú Gestión de Tutorías");
     }
 
+    public static void volverMenuGestionarUsuarios(ActionEvent event) throws IOException, NullPointerException {
+        goToWindow("/FXMLMenuGestionarUsuarios.fxml", event, "Gestión de Usuarios del Sistema");
+    }
+
     public static void clicCerrarSesion(ActionEvent event) throws IOException, NullPointerException {
         goToWindow("/FXMLInicioSesion.fxml", event, "Iniciar Sesión");
     }
